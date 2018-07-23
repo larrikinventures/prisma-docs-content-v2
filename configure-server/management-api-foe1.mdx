@@ -1,0 +1,8 @@
+export const meta = {
+  title: 'The Management API',
+  position: 1
+}
+
+The Management API requires an authentication token (JWT) to be sent in the `Authorization` HTTP header for all its operations. This token is generated based on the *Management API secret*. 
+
+When using the Prisma CLI to talk to your Prisma server, you therefore need to set the `MANAGEMENT_API_SECRET` environment variable. This environment variable is then used by the CLI to generate the required authentication tokens for its requests.
