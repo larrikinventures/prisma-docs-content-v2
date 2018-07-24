@@ -56,7 +56,7 @@ Here's an example where all properties of prisma.yml are being used:
 
 ```yml
 # This service is based on the type definitions in the two files
-# `database/types.graphql` and `database/enums.graphql`
+# databasetypes.graphql` and `database/enums.graphql`
 datamodel:
   - database/types.graphql
   - database/enums.graphql
@@ -201,7 +201,7 @@ The service definition file prisma.yml has the following root properties:
 
 The exact structure of prisma.yml is defined with [JSON schema](http://json-schema.org/). You can find the corresponding schema definition [here](https://github.com/prismagraphql/prisma-json-schema/blob/master/src/schema.json). The JSON schem definition also allows to elevate your tooling and let your code editors and IDEs help you with the right structure of prisma.yml.
 
-### `datamodel` (required)
+### datamodel (required)
 
 The `datamodel` points to one or more `.graphql`-files containing model definitions written in GraphQL SDL. If multiple files are provided, the CLI simply concatenates their contents at deployment time.
 
@@ -225,7 +225,7 @@ datamodel:
   - enums.graphql
 ```
 
-### `endpoint` (optional)
+### endpoint (optional)
 
 The HTTP endpoint for your Prisma API is composed of the following components:
 
@@ -275,7 +275,7 @@ The following example endpoint encodes the following information:
 endpoint: http://my-pr-Publi-1GXX8QUZU3T89-413349553.us-east-1.elb.amazonaws.com/cat-pictures/prod
 ```
 
-### `secret` (optional)
+### secret (optional)
 
 The service secret is used to generate (or _sign_) authentication tokens ([JWT](https://jwt.io)). One of these authentication tokens needs to be attached to the HTTP requests made against the Prisma API exposes by the service (in the `Authorization` header field). 
 
@@ -313,7 +313,7 @@ Use the value of the `MY_SECRET` environment variable as the secret(s).
 secret: ${env:MY_SECRET}
 ```
 
-### `hooks` (optional)
+### hooks (optional)
 
 The `hooks` property is used to define terminal commands which will be executed by the Prisma CLI before or after certain commands.
 
@@ -356,7 +356,7 @@ projects:
             binding: src/generated/prisma.ts
 ```
 
-### `subscriptions` (optional)
+### subscriptions (optional)
 
 The `subscriptions` property is used to define all the subscription webhooks for your Prisma service. A subscription needs (at least) two pieces of information:
 
@@ -395,7 +395,7 @@ subscriptions:
         Content-Type: application/json
 ```
 
-### `seed` (optional)
+### seed (optional)
 
 Database seeding is a standardised way to populate a service with test data.
 
@@ -433,7 +433,7 @@ seed:
   run: node script.js
 ```
 
-### `custom` (optional)
+### custom (optional)
 
 The `custom` property lets you specify any sorts of values you want to reuse elsewhere in your prisma.yml. It thus doesn't have a predefined structure. You can reference the values using variables with the [`self` variable source](#self-reference), e.g.: `${self:custom.myVariable}`.
 
