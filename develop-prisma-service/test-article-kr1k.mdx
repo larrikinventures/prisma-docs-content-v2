@@ -1,6 +1,45 @@
+import Code from 'components/Markdown/Code'
+
 export const meta = {
   title: "Test Article",
   position: 5
 }
 
 ## This is a great test!!
+
+<Code language="jsx" lines="2-10">
+
+```
+import React from "react";
+import ReactDOM from "react-dom";
+import { ApolloProvider } from "react-apollo";
+import ApolloClient from "apollo-boost";
+import {
+  Container, CreateUser,
+  Posts, NewPost } from "components";
+
+const client = new ApolloClient({
+  uri: "$YOUR_PRISMA_ENDPOINT$"
+});
+
+class App extends React.Component {
+  render() {
+    return (
+      <ApolloProvider client={client}>
+        <Container user={this.state.user}>
+          <CreateUser createUser={this.createUser} />
+          <NewPost
+            user={this.state.user}
+            createPost={this.createPost} />
+          <Posts posts={this.state.posts} />
+        </Container>
+      </ApolloProvider>
+    );
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById("root"));
+```
+
+</Code>
+
