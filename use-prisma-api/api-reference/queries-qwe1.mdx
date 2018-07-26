@@ -32,7 +32,19 @@ type Query {
 }
 ```
 
-If you want to learn about the concrete capabilities of your Prisma API, the easiest way is to explore the auto-generated API documentation inside a GraphQL Playground. You can do so by clicking the green **SCHEMA**-button at the right edge of the Playground:
+For every type in your data model, three queries are generated:
+
+- `user`: Retrieve a single `User` node
+- `users`: Retrieve a list of `User` nodes (as an object query)
+- `usersConnection`: Retrieve a list of `User` nodes (as a connection query)
+
+To inspect all the available operations of your Prisma API in detail, you can read the Prisma database schema of your Prisma service.It can be downloaded with the [GraphQL CLI](https://github.com/graphql-cli/graphql-cli): 
+
+```bash
+graphql get-schema --endpoint __YOUR_PRISMA_ENDPOINT__ --output prisma.graphql --no-all
+```
+
+Another way to learn about the concrete capabilities of your Prisma API is by exploring the auto-generated API documentation inside a GraphQL Playground. You can do so by clicking the green **SCHEMA**-button at the right edge of the Playground:
 
 ![](https://imgur.com/09ivRMs.png)
 
