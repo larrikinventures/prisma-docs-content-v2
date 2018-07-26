@@ -1,4 +1,5 @@
 import Code from 'components/Markdown/Code'
+import Tooltip from 'components/Tooltip'
 
 export const meta = {
   title: "Test Article",
@@ -7,7 +8,21 @@ export const meta = {
 
 ## This is a great test!!
 
-<Code language="jsx" lines="2-10" source="https://google.com">
+|                 | javascript                             | typescript                                          |
+|-----------------|----------------------------------------|-----------------------------------------------------|
+| `graphql-binding` | imports schema                         | imports schema + adds types                         |
+| `prisma-binding`  | has typeDefs const, only secret needed | has typeDefs const, only secret needed + adds types |
+
+
+export const content = `
+  ## This is tooltip content
+  \`\`\`bash
+  $ prisma deploy --new
+  \`\`\`
+  *blub*
+`
+
+<Code language="jsx" lines="2-10" source="https://google.com" tooltips={[content]}>
 
 ```
 import React from "react";
@@ -42,4 +57,3 @@ ReactDOM.render(<App />, document.getElementById("root"));
 ```
 
 </Code>
-
