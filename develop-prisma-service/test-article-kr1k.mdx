@@ -1,5 +1,5 @@
 import Code from 'components/Markdown/Code'
-import Tooltip from 'components/Tooltip'
+import Warning from 'components/Markdown/Warning'
 
 export const meta = {
   title: "Test Article",
@@ -7,6 +7,10 @@ export const meta = {
 }
 
 ## This is a great test!!
+```js
+const x = 100
+```
+
 
 |                 | javascript                             | typescript                                          |
 |-----------------|----------------------------------------|-----------------------------------------------------|
@@ -57,3 +61,9 @@ ReactDOM.render(<App />, document.getElementById("root"));
 ```
 
 </Code>
+
+<Warning>
+
+Halli hallo
+
+</Warning>
