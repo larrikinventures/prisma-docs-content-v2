@@ -22,7 +22,7 @@ type User {
 }
 ```
 
-This is what the generated `Query` type looks like:
+This is the `Query` type Prisma will generate:
 
 ```graphql
 type Query {
@@ -189,7 +189,7 @@ query {
 }
 ```
 
-> Note that more aggregations will be added over time. Find more information about the roadmap [here](https://github.com/prismagraphql/prismagraphql/issues/1312).
+> More aggregations will be added over time. Find more information about the roadmap [here](https://github.com/prismagraphql/prismagraphql/issues/1312).
 
 ## Querying data across relations
 
@@ -493,6 +493,8 @@ For the following examples, we're assuming a list of exactly 30 nodes:
 
 **Query the first 3 nodes (seeking _forward_):**
 
+![](https://imgur.com/dRjRLcp.png)
+
 ```graphql
 query {
   posts(first: 3) {
@@ -502,9 +504,9 @@ query {
 }
 ```
 
-![](https://imgur.com/dRjRLcp.png)
-
 **Query the nodes from position 6 to position 10 (seeking _forward_):**
+
+![](https://imgur.com/e2UnoWJ.png)
 
 ```graphql
 query {
@@ -518,9 +520,9 @@ query {
 }
 ```
 
-![](https://imgur.com/e2UnoWJ.png)
-
 **Query the last 4 nodes (seeking _backward_)**:
+
+![](https://imgur.com/C32uDLG.png)
 
 ```graphql
 query {
@@ -531,9 +533,9 @@ query {
 }
 ```
 
-![](https://imgur.com/C32uDLG.png)
-
 **Query the nodes from position 20 to position 26 (seeking _backward_):**
+
+![](https://imgur.com/Ke04CCc.png)
 
 ```graphql
 query {
@@ -547,9 +549,9 @@ query {
 }
 ```
 
-![](https://imgur.com/Ke04CCc.png)
-
 **Query the first 2 nodes after the node with `cixnen24p33lo0143bexvr52n` as `id`:**
+
+![](https://imgur.com/7NAPqkX.png)
 
 ```graphql
 query {
@@ -563,9 +565,9 @@ query {
 }
 ```
 
-![](https://imgur.com/7NAPqkX.png)
-
 **Query the first 4 nodes after the node with `cixnen24p33lo0143bexvr52n` as `id` and skipping 3 nodes:**
+
+![](https://imgur.com/8nfeLPv.png)
 
 ```graphql
 query {
@@ -580,9 +582,9 @@ query {
 }
 ```
 
-![](https://imgur.com/8nfeLPv.png)
-
 **Query the last 6 nodes before the node with `cixnen24p33lo0143bexvr52n` as `id`:**
+
+![](https://imgur.com/B1b94Mi.png)
 
 ```graphql
 query {
@@ -596,9 +598,9 @@ query {
 }
 ```
 
-![](https://imgur.com/B1b94Mi.png)
-
 **Query the last 3 nodes before the node with `cixnen24p33lo0143bexvr52n` as `id` and skipping 5 nodes:**
+
+![](https://imgur.com/0Ggclr0.png)
 
 ```graphql
 query {
@@ -612,5 +614,3 @@ query {
   }
 }
 ```
-
-![](https://imgur.com/0Ggclr0.png)
