@@ -153,13 +153,15 @@ The Prisma database database schema is generated based on the data model:
 
 The illustration shows a simplified version of the generated Prisma database schema, you can find the full schema [here](https://gist.github.com/gc-codesnippets/f302c104f2806f9e13f41d909e07d82d).
 
+> TODO: mention directives
+
 ### The data model
 
 The data model is written manually by the developers of the Prisma service. It defines the models and structures the developer wants to use in their API.
 
 Strictly speaking, the **data model is not a valid GraphQL schema** because it does not contain any of GraphQL's root types (`Query`, `Mutation`, `Subscription`) and therefore does not define any API operations. 
 
-The data model only serves as _foundation_ for the generation of the actual GraphQL schema that defines the GraphQL API of your Prisma service. 
+The data model only serves as _foundation_ for the generation of the actual GraphQL schema that defines the GraphQL API of your Prisma service.
 
 ### The Prisma database schema
 

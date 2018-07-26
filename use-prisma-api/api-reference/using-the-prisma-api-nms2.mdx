@@ -50,11 +50,11 @@ Here is how you send a `createUser` mutation to the Prisma API using curl:
 ```bash
 curl '__YOUR_PRISMA_ENDPOINT__' \\
 -H 'Content-Type: application/json' \\
--H 'Authorization: Bearer __YOUR_PRISMA_TOKEN__' \\
+-H 'Authorization: Bearer __YOUR_SERVICE_TOKEN__' \\
 --data-binary '{"query":"mutation ($name: String!) { createUser(data: { name: $name }) { id } }","variables":{"name":"Sarah"}}'
 ```
 
-To **try out this example**, replace the `__YOUR_PRISMA_ENDPOINT__` and `__YOUR_PRISMA_TOKEN__` placeholders with corresponding values from your Prisma service and paste the resulting snippet into your terminal.
+To **try out this example**, replace the `__YOUR_PRISMA_ENDPOINT__` and `__YOUR_SERVICE_TOKEN__` placeholders with corresponding values from your Prisma service and paste the resulting snippet into your terminal.
 
 This results in the following mutation getting resolved by the Prisma API:
 
@@ -70,7 +70,7 @@ mutation {
 
 **Try out this example**:
 
-1. Replace the `__YOUR_PRISMA_ENDPOINT__` and `__YOUR_PRISMA_TOKEN__` placeholders with corresponding values from your Prisma service
+1. Replace the `__YOUR_PRISMA_ENDPOINT__` and `__YOUR_SERVICE_TOKEN__` placeholders with corresponding values from your Prisma service
 1. Paste the resulting snippet into your terminal and hit enter
 
 ## fetch (Node.JS)
@@ -101,7 +101,7 @@ fetch(endpoint, {
   headers: {
     'Content-Type': 'application/json',
     Authorization:
-      'Bearer __YOUR_PRISMA_TOKEN__',
+      'Bearer __YOUR_SERVICE_TOKEN__',
   },
   body: JSON.stringify({ query: query, variables: variables }),
 })
@@ -123,7 +123,7 @@ mutation {
 
 **Try out this example**:
 
-1. Replace the `__YOUR_PRISMA_ENDPOINT__` and `__YOUR_PRISMA_TOKEN__` placeholders with corresponding values from your Prisma service
+1. Replace the `__YOUR_PRISMA_ENDPOINT__` and `__YOUR_SERVICE_TOKEN__` placeholders with corresponding values from your Prisma service
 1. Store the resulting snippet in a JavaScript file called `script.js`
 1. Install the `node-fetch` library by running `yarn add node-fetch` in the same directory where `script.js` is located
 1. Execute the script using the following terminal command: `node script.js`
@@ -157,7 +157,7 @@ request('__YOUR_PRISMA_ENDPOINT__', query,  variables)
 
 **Try out this example**:
 
-1. Replace the `__YOUR_PRISMA_ENDPOINT__` and `__YOUR_PRISMA_TOKEN__` placeholders with corresponding values from your Prisma service
+1. Replace the `__YOUR_PRISMA_ENDPOINT__` and `__YOUR_SERVICE_TOKEN__` placeholders with corresponding values from your Prisma service
 1. Store the resulting snippet in a JavaScript file called `script.js`
 1. Install the `graphql-request` library by running `yarn add graphql-request` in the same directory where `script.js` is located
 1. Execute the script using the following terminal command: `node script.js`
@@ -169,7 +169,7 @@ const { GraphQLClient } = require('graphql-request')
 
 const client = new GraphQLClient('__YOUR_PRISMA_ENDPOINT__', {
   headers: {
-    Authorization: 'Bearer __YOUR_PRISMA_TOKEN__',
+    Authorization: 'Bearer __YOUR_SERVICE_TOKEN__',
   },
 })
 
@@ -191,7 +191,7 @@ client.request(query, variables)
 
 **Try out this example**:
 
-1. Replace the `__YOUR_PRISMA_ENDPOINT__` and `__YOUR_PRISMA_TOKEN__` placeholders with corresponding values from your Prisma service
+1. Replace the `__YOUR_PRISMA_ENDPOINT__` and `__YOUR_SERVICE_TOKEN__` placeholders with corresponding values from your Prisma service
 1. Store the resulting snippet in a JavaScript file called `script.js`
 1. Install the `graphql-request` library by running `yarn add graphql-request` in the same directory where `script.js` is located
 1. Execute the script using the following terminal command: `node script.js`
