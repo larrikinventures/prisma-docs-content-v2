@@ -2,3 +2,157 @@ export const meta = {
   title: "Concepts",
   position: 30,
 }
+
+## Overview
+
+This page explains a number of important concepts to be aware of when working with the Prisma API.
+
+All examples on this page are for a Prisma API that's based on the following data model:
+
+```graphql
+type User {
+  id: ID! @unique
+  email: String @unique
+  name: String!
+  posts: [Post!]!
+}
+
+type Post {
+  id: ID! @unique
+  title: String!
+  published: Boolean! @default(value: "false")
+  author: User
+}
+```
+
+## Prisma database schema
+
+The Prisma database is the [GraphQL schema](https://www.prisma.io/blog/graphql-server-basics-the-schema-ac5e2950214e/) defining the data types and operations of a Prisma API. It is auto-generated and specifies CRUD and realtime operations for the models spefified in the service's data model.
+
+![](https://imgur.com/ZIjHLpL.png)
+
+## Node selection
+
+Many operations in the Prisma API only affect a subset of the existing nodes, sometimes only a single node, such as updating or deleting nodes.
+
+In these case, you need a way to ask for specific nodes in the API. This is what the `where` filter argument is being used for. It lets you specify conditions to select the nodes to which an operation should be applied.
+
+Nodes can be selected via any field that's annotated with the `@unique` directive.
+
+Here are a few scenarios where node selection is required.
+
+**Retrieve a single node by its `email`**:
+
+```graphql
+query {
+  user(where: {
+    email: "alice@prisma.io"
+  }) {
+    id
+  }
+}
+```
+
+**Update the `name` of a single node**:
+
+```graphql
+mutation {
+  updatePost(
+    where: {
+      id: "ohco0iewee6eizidohwigheif"
+    }
+    data: {
+      title: "GraphQL is awesome"
+    }
+  ) {
+    id
+  }
+}
+```
+
+**Update `published` of a many nodes at once** (also see [Batch operations](#batch-operations)):
+
+```graphql
+mutation {
+  updatePost(
+    where: {
+      id_in: ["ohco0iewee6eizidohwigheif", "phah4ooqueengij0kan4sahlo", "chae8keizohmiothuewuvahpa"]
+    }
+    data: {
+      published: true
+    }
+  ) {
+    count
+  }
+}
+```
+
+## Batch operations
+
+One application of the node selection concept are the [batch operations](!alias-utee3eiquo#batch-operations) exposed by the Prisma API. Batch updating or deleting is optimized for making changes to a large number of nodes. As such, these mutations only return _how many_ nodes have been affected, rather than full information on specific nodes.
+
+For example, the mutations `updateManyPosts` and `deleteManyPosts` provide a `where` argument to select specific nodes, and return a `count` field with the number of affected nodes (see the example above).
+
+> WARNING: Note that no [subscription](!alias-aey0vohche) events are triggered for batch mutations!
+
+## Connections (Relay Pagination & Aggregations)
+
+In contrast to the simple relation queries that _directly_ return a list of nodes, connection queries are based on the [Relay Connection](https://facebook.github.io/relay/graphql/connections.htm) model. In addition to pagination information, connections in the Prisma API also have advanced features, such as aggregation.
+
+For example, while the `posts` query allows you to select specific `Post` nodes, sort them by some field and paginate over the result, the `postsConnection` query additionally allows you to _count_ all unpublished posts:
+
+```graphql
+query {
+  postsConnection {
+    # `aggregate` allows to perform common aggregation operations
+    aggregate {
+      count
+    }
+    edges {
+      # each `node` refers to a single `Post` node
+      node {
+        title
+      }
+    }
+  }
+}
+```
+
+> Check [this](https://github.com/prismagraphql/prisma/issues/1312) feature request to learn about the planned aggregation operations.
+
+## Transactions & Nested mutations
+
+Single mutations in the Prisma API that are not batch operations are always executed _transactionally_, even if they consist of many actions that potentially spread across relations. This is especially useful for [nested mutations](!alias-ol0yuoz6go#nested-mutations) that perform several database writes on multiple types.
+
+Nested mutations are mutations that are touching at least two nodes, each of a different type. Here is a simple example:
+
+```graphql
+mutation {
+  createUser(data: {
+    name: "Sarah"
+    posts: {
+      create: [
+        { title: "GraphQL is great" } 
+        { title: "Prisma is a data access layer" }
+      ]
+    }
+  }) {
+    id
+    posts {
+      id
+    }
+  }
+}
+```
+
+This mutation creates new `User` node as well as two new `Post` node. 
+
+An example is creating a `User` node and two `Post` nodes that will be connected, while also connecting the `User` node to two other, already existing `Post` nodes, all in a single mutation. If any of the mentioned actions fail (for example because of a violated `@unique` field constraint), the entire mutation is rolled back!
+
+Mutations are _transactional_, meaning they are [_atomic_](https://en.wikipedia.org/wiki/Atomicity_(database_systems)) and [_isolated_](https://en.wikipedia.org/wiki/Isolation_(database_systems)). This means that between two separate actions of the same nested mutation, no other mutations can alter the data. Also the result of a single action cannot be observed until the complete mutation has been processed.
+
+## 
+
+## Cascading deletes
+
+# Authentication

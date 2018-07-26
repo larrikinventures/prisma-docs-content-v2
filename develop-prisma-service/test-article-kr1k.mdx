@@ -43,3 +43,39 @@ ReactDOM.render(<App />, document.getElementById("root"));
 
 </Code>
 
+<Code language="jsx">
+
+```
+import React from "react";
+import ReactDOM from "react-dom";
+import { ApolloProvider } from "react-apollo";
+import ApolloClient from "apollo-boost";
+import {
+  Container, CreateUser,
+  Posts, NewPost } from "components";
+
+const client = new ApolloClient({
+  uri: "$YOUR_PRISMA_ENDPOINT$"
+});
+
+class App extends React.Component {
+  render() {
+    return (
+      <ApolloProvider client={client}>
+        <Container user={this.state.user}>
+          <CreateUser createUser={this.createUser} />
+          <NewPost
+            user={this.state.user}
+            createPost={this.createPost} />
+          <Posts posts={this.state.posts} />
+        </Container>
+      </ApolloProvider>
+    );
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById("root"));
+```
+
+</Code>
+
