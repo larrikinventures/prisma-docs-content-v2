@@ -1,11 +1,38 @@
 import Code from 'components/Markdown/Code'
 import Warning from 'components/Markdown/Warning'
 import Collapse from 'components/Markdown/Collapse'
+import Playground from 'components/Markdown/Playground'
 
 export const meta = {
   title: "Test Article",
   position: 5
 }
+
+## Wow
+
+<Playground playgroundLink="https://api.graph.cool/simple/v1/asdf">
+
+```graphql
+query {
+  users(where: { age_gt: 17 }) {
+    id
+  }
+}
+```
+```js
+{
+  "users": [
+    {
+      "id": 1
+    },
+    {
+      "id": 2
+    }
+  ]
+}
+```
+
+</Playground>
 
 ## This is a great test!!
 
@@ -32,7 +59,7 @@ export const content = `
   *blub*
 `
 
-<Code language="jsx" lines="2-10" source="https://google.com" tooltips={[content]}>
+<Code language="jsx" lines="2-10" source="https://google.com" tooltips={[content]} showLanguageSwitch={true}>
 
 ```
 import React from "react";
