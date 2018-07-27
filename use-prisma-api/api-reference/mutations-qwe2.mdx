@@ -1,3 +1,5 @@
+import Warning from 'components/Markdown/Warning'
+
 export const meta = {
   title: "Mutations",
   position: 50,
@@ -73,7 +75,6 @@ type User {
   email: String! @unique
   name: String!
   posts: [Post!]!
-  scores: [Int!]!
 }
 ```
 
@@ -494,7 +495,7 @@ type User {
 
 When creating a new node of type `User`, a list of values can be provided for each scalar list field using `set`.
 
-#### Example
+**Create a new `User` and set the values for `scores`, `friends` and `coinFlips`:**
 
 ```grahpql
 mutation {
@@ -518,8 +519,6 @@ When updating an existing node of type `User`, a number of additional operations
 - `remove` (coming soon): Remove all elements from the list that match a given filter.
 
 > **Note**: `push`, `pop` and `remove` are not yet implemented. If you're curios what these are going to look like, you can get a preview in the respective [specification](https://github.com/prismagraphql/prisma/issues/1275).
-
-#### `set`
 
 Each scalar list field takes an object with a `set` field in an `update` mutation. The value of that field is a single value _or_ a list of the corresponding scalar type.
 
@@ -557,6 +556,56 @@ mutation {
     }
   ) {
     id
+  }
+}
+```
+
+
+## Batch Mutations
+
+Batch mutations are useful to update or delete many nodes at once. The returned data only contains the `count` of affected nodes.
+
+<Warning>
+
+Batch mutations are **not** triggering [subscription](!alias-aey0vohche) events!
+
+</Warning>
+
+For updating many nodes, you can [select the affected nodes](!alias-utee3eiquo#node-selection) using the `where` argument, while you specify the new values with `data`. All nodes will be updated to the same value.
+
+
+**Set the `published` fields of all unpublished `Post` nodes that were created in 2017 to `true`:**
+
+```graphql
+mutation {
+  updateManyPosts(
+    where: {
+      createdAt_gte: "2017"
+      createdAt_lt: "2018"
+      published: false
+    }
+    data: {
+      published: true
+    }
+  ) {
+    count
+  }
+}
+```
+
+**Delete all unpublished `Post` nodes where the `name` of the `author` is `Alice`:**
+
+```graphql
+mutation {
+  deleteManyPosts(
+    where: {
+      published: false
+      author: {
+        name: "Alice"
+      }
+    }
+  ) {
+    count
   }
 }
 ```
