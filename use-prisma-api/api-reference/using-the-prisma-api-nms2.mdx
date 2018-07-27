@@ -9,27 +9,15 @@ Prisma APIs are consumed via HTTP. This means you can use any HTTP tool/library 
 
 Here is the structure of an HTTP POST request that carries a `createUser` mutation:
 
-**Header fields**
+**Header**
 
-- `Authorization`
-  - **Sample value:** `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...`
-  - **Description:** Carries the service token used to authenticate a request; only required if the service is deployed with a service secret.
-- `Content-Type`
-  - **Sample value:** `application/json`
-  - **Description:** Specifies the format of the request's body (JSON).
+- `Authorization`: Carries the _service token_ (prefixed with `Bearer`) used to authenticate a request; only required if the service is deployed with a _service secret_.
+- `Content-Type`: Specifies the format of the request's body (JSON), usually `application/json`.
 
 **Body** (JSON)
 
-- `query`
-  - **Sample value**: 
-  
-    ```js
-    "mutation($name: String!) { createUser(data: { name: $name }) { id } }"
-    ```
-  - **Description:** The GraphQL operation to be sent to the API; beware that despite the field being called `query` it's also used for mutations.
-- `variables`
-  - **Sample value**: `"{ name: "Sarah" }"`
-  - **Description:**  The variables defined in the GraphQL operation.
+- `query`: The GraphQL operation to be sent to the API; beware that despite the field being called `query` it's also used for mutations!
+- `variables`: A JSON object containing the variables defined in the GraphQL operation submitted in `query`.
 
 All examples on this page are based on a Prisma service with the following service configuration:
 

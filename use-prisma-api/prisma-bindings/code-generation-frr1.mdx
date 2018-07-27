@@ -1,0 +1,67 @@
+export const meta = {
+  title: 'Code Generation',
+  position: 30,
+}
+
+## Overview
+
+Prisma binding comes with a code generator CLI.
+
+
+### Install
+
+Install with `npm`:
+
+```sh
+npm install -g prisma-binding
+```
+
+Install with `yarn`:
+
+```sh
+yarn global add prisma-binding
+```
+
+### Usage
+
+```
+Usage: prisma-binding -i [input] -g [generator] -b [outputBinding]
+
+Options:
+  --help                Show help                                      [boolean]
+  --version             Show version number                            [boolean]
+  --input, -i           Path to schema.graphql, schema.js or schema.ts file
+                                                             [string] [required]
+  --language, -l        Type of the generator. Available generators: typescript,
+                        javascript, flow                     [string] [required]
+  --outputBinding, -b   Output binding. Example: binding.ts  [string] [required]
+  --outputTypedefs, -t  Output type defs. Example: typeDefs.graphql     [string]
+```
+
+### Usage with GraphQL Config
+
+The `prisma-binding` CLI integrates with GraphQL Config. This means instead of passing arguments to the command, you can write a `.graphqlconfig.yml` file which will be read by the CLI.
+
+For example, consider the following `.graphqlconfig.yml`:
+
+```yaml
+projects:
+  myapp:
+    schemaPath: src/generated/prisma.graphql
+    extensions:
+      prisma: prisma/prisma.yml
+      codegen:
+        - generator: prisma-binding
+          language: typescript
+          output:
+            binding: src/generated/prisma.ts
+```
+
+Invoking simply `graphql codegen` in a directory where the above `.graphqlconfig` is available is equivalent to invoking the following terminal command:
+
+```sh
+prisma-binding \
+  --language typescript \
+  --input src/generated/prisma.graphql \
+  --outputBinding mybinding.ts
+```
