@@ -1,5 +1,6 @@
 import Code from 'components/Markdown/Code'
 import Warning from 'components/Markdown/Warning'
+import Collapse from 'components/Markdown/Collapse'
 
 export const meta = {
   title: "Test Article",
@@ -7,6 +8,11 @@ export const meta = {
 }
 
 ## This is a great test!!
+
+> Hallo Welt
+
+
+
 ```js
 const x = 100
 ```
@@ -67,3 +73,12 @@ ReactDOM.render(<App />, document.getElementById("root"));
 Halli hallo
 
 </Warning>
+
+<Collapse title="Hey ho, let's go!">
+
+This is some juicy *stu* **ff**.
+
+</Collapse>
+
+
+## Moar Cont ent
