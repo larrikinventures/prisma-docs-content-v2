@@ -110,7 +110,7 @@ Another way of looking at GraphQL bindings is as _auto-generated SDKs for GraphQ
 
 GraphQL bindings effectively serve the same purpose. The binding functions are equivalent to the root fields of the corresponding GraphQL schema and allow to interact with the GraphQL API in a more convenient way.
 
-![](https://imgur.com/P2tdvqe.png)
+![](https://imgur.com/U2MHmdT.png)
 
 ### Prisma bindings have additional Prisma-specific features
 
@@ -179,7 +179,7 @@ The second mode is referred to as _schema delegation_. Schema delegation only wo
 
 The idea of schema delegation is that a GraphQL query that's received by GraphQL server **`A`** is not resolved by **`A`**'s execution engine. Instead, **`A`** _delegates_ the query to GraphQL server **`B`** whose GraphQL execution engine will finally take care of resolving the query.
 
-![](https://imgur.com/ufBSQNq.png)
+![](https://imgur.com/FhhaIgh.png)
 
 In this example, the `feed` resolver in the application server _delegates_ the resolution of the incoming query to the `posts` resolver of the Prisma API. Note that this only works when the respective fields of both resolvers have the same _type_.
 
