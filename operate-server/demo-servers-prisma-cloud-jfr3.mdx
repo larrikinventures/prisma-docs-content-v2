@@ -1,0 +1,24 @@
+import Warning from "components/Markdown/Warning"
+
+export const meta = {
+  title: 'Demo Servers (Prisma Cloud)',
+  position: 50
+}
+
+## Overview
+
+Prisma Demo servers are Prisma servers running in [Prisma Cloud](https://www.prisma.io/cloud/). **Usage of Demo servers is free of any charge!**
+
+Demo servers are not to be used in production as they are rate-limited and have constraints in terms of storage.
+
+## Limitations
+
+### Rate limiting
+
+Prisma sandboxes are rate limited to **10 requests per 10 seconds** (on average).
+
+If this rate is exceeded, requests are being queued in memory. If the queue exceeds 25 requests, an error is returned immediately. The header field `throttled-by` is included in HTTP responses. It indicates how long the request was delayed due to throttling (in milli seconds).
+
+### Storage
+
+The upper bound in storage capacity for a Prisma service running on a Demo server is **100 MB**.
