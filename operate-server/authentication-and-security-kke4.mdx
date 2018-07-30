@@ -105,7 +105,7 @@ The JWT must contain the following [claims](https://jwt.io/introduction/#payload
   - The `target` field specifies the _name_ and _stage_ of the service that's modified with a certain action. Use the `*` wildcard to allows actions for all services running on the Prisma server.
   - The `action` field specifies which actions are allowed against the `target`. The wildcard `*` allows all actions.
 
-Here is the sample payload of a JWT using wildcards to allow all actions on all services:
+Here is the sample payload of a JWT using wildcards to allow _all_ actions on _all_ services:
 
 ```json
   {
@@ -149,6 +149,6 @@ When you want to send HTTP requests directly to the Management API of your Prism
 
 The Prisma CLI has a hidden helper command for generating Management API tokens: `prisma cluster-token`. Before running it, you need to set the `MANAGEMENT_API_SECRET` environment variable. Note that this command is not officially documented and might change without further notice.
 
-There already is a [pending feature request](https://github.com/prismagraphql/prisma/issues/2772) for a similar command though.
+There already is a [pending feature request](https://github.com/prismagraphql/prisma/issues/2772) for a similar command.
 
 </Warning>
