@@ -1,7 +1,7 @@
 export const meta = {
   title: 'Setting up Prisma',
   step: 1,
-  gettingStartedTitle: 'Using a demo server',
+  gettingStartedTitle: 'Use Demo server (Prisma Cloud)',
   position: 1
 }
 
@@ -14,7 +14,7 @@ On this page, you will learn how to:
 - Deploy a Prisma service to a Demo server in Prisma Cloud
 - Explore the Prisma API in a GraphQL Playground
 
-## Step 1: Install the Prisma CLI
+## Install the Prisma CLI
 
 The [Prisma CLI](https://www.npmjs.com/package/prisma) is used to deploy and manage Prisma services. You can install it using NPM:
 
@@ -22,7 +22,7 @@ The [Prisma CLI](https://www.npmjs.com/package/prisma) is used to deploy and man
 npm install -g prisma
 ```
 
-## Step 2: Create a Prisma service configuration
+## Create a Prisma service configuration
 
 To bootstrap the configuration files for your first Prisma service, create a new directory and initalize it using the `prisma init` command:
 
@@ -39,7 +39,7 @@ After running `prisma init`, the Prisma CLI prompts you to select _how_ you want
 1. Go back to your terminal.
 1. Choose the suggested values for all following questions by just hitting **Enter** until the interactive prompt terminates.
 
-## Step 3: Deploy the Prisma service
+## Deploy the Prisma service
 
 The `prisma init` command created the _minimal_ service configuration needed to deploy a Prisma service: `prisma.yml` and `datamodel.graphql`. This service configuration now needs to be _deployed_ so you can use the Prisma API of your service:
 
@@ -47,7 +47,7 @@ The `prisma init` command created the _minimal_ service configuration needed to 
 prisma deploy
 ```
 
-## Step 4: Explore the Prisma API in a Playground
+## Explore the Prisma API in a Playground
 
 The Prisma API of your service exposes CRUD operations for the `User` type defined in `datamodel.graphql`. Here are a few sample queries and mutations you can send to explore the API.
 

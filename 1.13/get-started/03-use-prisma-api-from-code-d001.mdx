@@ -13,7 +13,7 @@ On this page, you will learn how to:
 
 > The Prisma API is a GraphQL API that's served via HTTP. You can therefore consume it using any HTTP tool you like, such as `curl` or JavaScript's `fetch`. On this page, you're using Prisma bindings which provide a convenient abstraction on top of `fetch` to reduce boilerplate and improve the developer experience when working with Prisma. 
 
-## Step 1: Setup Node.JS project
+## Setup Node.JS project
 
 For this tutorial, you'll use an extremely simple setup for your Node.JS app. Create your project in a directory called `myapp` using the following commands; note that `myapp` should _not_ be located _inside_ the `hello-world` directory which holds the service configuration of your service:
 
@@ -24,7 +24,7 @@ touch index.js
 yarn init -y
 ```
 
-## Step 2: Install Prisma bindings
+## Install Prisma bindings
 
 Go ahead and add the Prisma binding dependency to your project:
 
@@ -32,7 +32,7 @@ Go ahead and add the Prisma binding dependency to your project:
 yarn add prisma-binding graphql
 ```
 
-## Step 3: Download the GraphQL schema of your Prisma API
+## Download the GraphQL schema of your Prisma API
 
 When using Prisma bindings in your project, you need to have access to the auto-generated GraphQL schema of your Prisma API. 
 
@@ -44,11 +44,11 @@ npx graphql get-schema --endpoint __YOUR_PRISMA_ENDPOINT__ --output prisma.graph
 
 The GraphQL schema is now stored in `prisma.graphql` (as specified in the `--output` parameter of the command).
 
-## Step 3: Instantiate Prisma API using Prisma bindings
+## Instantiate Prisma API using Prisma bindings
 
 Prisma bindings provide a convenient way to interact with Prisma APIs. Instead of manually constructing HTTP requests and sending them to Prisma, you can use the auto-generated binding functions to send queries and mutations.
 
-## Step 4: Instantiate a `Prisma` binding
+## Instantiate a `Prisma` binding
 
 It's time to write some code! Add the following snippet into `index.js`; like in the previous step you need to replace the `≥__YOUR_PRISMA_ENDPOINT__`-placeholder with your actual endpoint:
 
@@ -61,7 +61,7 @@ const prisma = new Prisma({
 })
 ```
 
-## Step 5: Use your Prisma binding to send queries and mutations
+## Use your Prisma binding to send queries and mutations
 
 Add the following code snippet _after_ the code you have added in the previous step:
 
@@ -136,7 +136,7 @@ Here is what the code does:
 
   > TODO: Collapse and make the explanations expandable
 
-## Step 6: Execute the Node.JS script
+## Execute the Node.JS script
 
 To run the script and actually send the above queries and mutations to your Prisma service, run the following command:
 

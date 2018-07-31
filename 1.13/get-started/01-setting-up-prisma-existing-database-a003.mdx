@@ -1,7 +1,9 @@
+import Warning from 'components/Markdown/Warning'
+
 export const meta = {
   title: 'Setting up Prisma',
   step: 1,
-  gettingStartedTitle: 'Using Docker & an existing database',
+  gettingStartedTitle: 'Use existing DB (requires Docker)',
   position: 3
 }
 
@@ -11,11 +13,17 @@ On this page, you will learn how to:
 
 - Install Prisma
 - Start a local Prisma server using Docker
-- Create a Prisma service configuration
+- Introspect your existing database and generate a service configuration
 - Deploy a Prisma service to the local Prisma server
 - Explore the Prisma API in a GraphQL Playground
 
-## Step 1: Install the Prisma CLI
+<Warning>
+
+Using your existing database with Prisma currently only works when using **PostgreSQL** databases.
+
+</Warning>
+
+## Install the Prisma CLI
 
 The [Prisma CLI](https://www.npmjs.com/package/prisma) is used to deploy and manage Prisma services. You can install it using NPM:
 
@@ -23,11 +31,11 @@ The [Prisma CLI](https://www.npmjs.com/package/prisma) is used to deploy and man
 npm install -g prisma
 ```
 
-## Step 2: Install Docker
+## Install Docker
 
 To use Prisma locally, you need to have [Docker](https://www.docker.com) installed on your machine. If you don't have Docker yet, you can download the Docker Community Edition for your operating system [here](https://www.docker.com/community-edition).
 
-## Step 3: Set up database and Prisma server
+## Set up database and Prisma server
 
 ### Create Docker Compose file
 
@@ -45,7 +53,7 @@ Paste the following contents into the Docker Compose file you just created:
 version: '3'
 services:
   prisma:
-    image: prismagraphql/prisma:1.11
+    image: prismagraphql/prisma:1.13
     restart: always
     ports:
     - "4466:4466"
@@ -61,7 +69,7 @@ services:
             password: prisma
             migrations: true
   mysql:
-    image: mysql:5.7
+    image: postgres
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: prisma
@@ -71,9 +79,7 @@ volumes:
   mysql:
 ```
 
-> TODO: Add Postgres switch to code block
-
-### Start Prisma server and database
+### Start database and Prisma server
 
 To start the Prisma server and launch the connected database, run the following command:
 
@@ -81,9 +87,9 @@ To start the Prisma server and launch the connected database, run the following 
 docker-compose up -d
 ```
 
-## Step 4: Create a Prisma service
+## Create a Prisma service
 
-To bootstrap the configuration files for your first Prisma service, create a new directory and initalize it using the `prisma init` command:
+To bootstrap the service configuration files for your first Prisma service, create a new directory and initalize it using the `prisma init` command:
 
 ```bash
 mkdir hello-world
@@ -91,25 +97,17 @@ cd hello-world
 prisma init --endpoint http://localhost:4466
 ```
 
-## Step 5: Start local Prisma server
+## Deploy the Prisma service
 
-The `prisma init` created the Docker Compose file for your Prisma server. It includes the [`prisma`](https://hub.docker.com/r/prismagraphql/prisma/) Docker image as well as the Docker image for the database you selected in the previous step.
+The `prisma init` command created the _minimal_ service configuration needed to deploy a Prisma service: `prisma.yml` and `datamodel.graphql`. 
 
-To start the server, run the following command:
-
-```bash
-docker-compose up -d
-```
-
-## Step 6: Deploy the Prisma service
-
-The `prisma init` command created the _minimal_ service configuration needed to deploy a Prisma service: `prisma.yml` and `datamodel.graphql`. This service configuration now needs to be _deployed_ so you can use the Prisma API of your service:
+This service configuration now needs to be _deployed_ so you can use the Prisma API of your service:
 
 ```bash
 prisma deploy
 ```
 
-## Step 7: Explore the Prisma API in a Playground
+## Explore the Prisma API in a Playground
 
 The Prisma API of your service exposes CRUD and realtime operations for the `User` type defined in `datamodel.graphql`. You can explore the API in a [GraphQL Playground](https://github.com/prismagraphql/graphql-playground) using the following command:
 

@@ -1,9 +1,19 @@
 export const meta = {
   title: 'Setting up Prisma',
   step: 1,
-  gettingStartedTitle: 'Using Docker & a new database',
+  gettingStartedTitle: 'Create new DB (requires Docker)',
   position: 2
 }
+
+## Goals
+
+On this page, you will learn how to:
+
+- Install Prisma
+- Start a local Prisma server using Docker
+- Create a Prisma service configuration
+- Deploy a Prisma service to the local Prisma server
+- Explore the Prisma API in a GraphQL Playground
 
 ## Install the Prisma CLI
 
@@ -21,7 +31,7 @@ To use Prisma locally, you need to have [Docker](https://www.docker.com) install
 
 ### Create Docker Compose file
 
-To launch a Prisma server on your machine, you need a Docker Compose file that configures the Prisma server and specifies to which database it can connect.
+To launch a Prisma server on your machine, you need a Docker Compose file that configures the Prisma server and specifies the database it can connect to.
 
 ```bash
 touch docker-compose.yml
@@ -35,7 +45,7 @@ Paste the following contents into the Docker Compose file you just created:
 version: '3'
 services:
   prisma:
-    image: prismagraphql/prisma:1.11
+    image: prismagraphql/prisma:1.13
     restart: always
     ports:
     - "4466:4466"
@@ -63,7 +73,7 @@ volumes:
 
 > TODO: Add Postgres switch to code block
 
-### Start Prisma server and database
+### Start database and Prisma server
 
 To start the Prisma server and launch the connected database, run the following command:
 
@@ -73,7 +83,7 @@ docker-compose up -d
 
 ## Create a Prisma service
 
-To bootstrap the configuration files for your first Prisma service, create a new directory and initalize it using the `prisma init` command:
+To bootstrap the service configuration files for your first Prisma service, create a new directory and initalize it using the `prisma init` command:
 
 ```bash
 mkdir hello-world
@@ -81,19 +91,11 @@ cd hello-world
 prisma init --endpoint http://localhost:4466
 ```
 
-## Start local Prisma server
-
-The `prisma init` created the Docker Compose file for your Prisma server. It includes the [`prisma`](https://hub.docker.com/r/prismagraphql/prisma/) Docker image as well as the Docker image for the database you selected in the previous step.
-
-To start the server, run the following command:
-
-```bash
-docker-compose up -d
-```
-
 ## Deploy the Prisma service
 
-The `prisma init` command created the _minimal_ service configuration needed to deploy a Prisma service: `prisma.yml` and `datamodel.graphql`. This service configuration now needs to be _deployed_ so you can use the Prisma API of your service:
+The `prisma init` command created the _minimal_ service configuration needed to deploy a Prisma service: `prisma.yml` and `datamodel.graphql`. 
+
+This service configuration now needs to be _deployed_ so you can use the Prisma API of your service:
 
 ```bash
 prisma deploy
@@ -121,7 +123,7 @@ mutation {
 }
 ```
 
-> Copy the `id` of the `createUser` object returned in the Playground and use it for the `__USER_ID__` placeholer value in the upcoming `updateUser`- and `deleteUser`-mutations.
+> Copy the `id` of the `createUser` object returned in the Playground and use it for the `__USER_ID__` placeholer value in the following `updateUser`- and `deleteUser`-mutations.
 
 **Query all `User`s**:
 
