@@ -35,7 +35,11 @@ curl '__YOUR_PRISMA_ENDPOINT__' \\
 
 ## Service secret
 
-The service secret is an alphanumeric random string specified by the developer of a Prisma service. It set as the `secret` property in your service's prisma.yml.
+The service secret is an alphanumeric random string specified by the developer of a Prisma service. It set as the `secret` property in your service's prisma.yml:
+
+```yml
+secret: my-secret-42
+```
 
 ## Service token
 

@@ -11,7 +11,7 @@ To automate this process, you can use the `prisma introspect` command from the P
 
 The generated SDL serves as a foundation for your Prisma service, but you can easily make modifications afterwards as you see fit. Some common modifications include hiding a table from the GraphQL API or giving a column to a different name.
 
-> WARNING: Currently database introspection only works with Postgres. Additionally there is a set of documented [known limitations](https://github.com/graphcool/prisma/issues/2377).
+> WARNING: Currently database introspection only works with Postgres. Additionally there is a set of documented [known limitations](https://github.com/prismagraphql/prisma/issues/2377).
 
 ## Introspecting a Postgres database
 
@@ -28,12 +28,12 @@ There are two ways you can use the CLI to introspect a Postgres schema:
 
 In both cases, you need to provide the _connection details_ for the running Postgres database. This includes the following:
 
-- **Host**: The host of your Postgres server, e.g. `localhost`
-- **Port**: The post where your Postgres server listens, e.g. `5432`
-- **User & Password**: The credentials for your Postgres server
-- **Name of existing _database_**: The name of the Postgres _database_ (according to the illustrated model from above)
+- **Host**: The host of your Postgres server, e.g. `localhost`.
+- **Port**: The port where your Postgres server listens, e.g. `5432`.
+- **User & Password**: The credentials for your Postgres server.
+- **Name of existing _database_**: The name of the Postgres _database_ (according to the illustrated model from above).
 - **Use SSL (Yes/No)**: If your database connection is using SSL, you need to select `Yes`, otherwise `No`.
-- **Name of existing _schema_**: The name of the Postgres _schema_ (according to the illustrated model from above)
+- **Name of existing _schema_**: The name of the Postgres _schema_ (according to the illustrated model from above), e.g. `public`.
 
 ### Using the `prisma init` wizard
 
