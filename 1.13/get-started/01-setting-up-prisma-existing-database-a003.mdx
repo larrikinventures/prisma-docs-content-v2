@@ -23,6 +23,16 @@ Using your existing database with Prisma currently only works when using **Postg
 
 </Warning>
 
+## Prerequisites
+
+Make sure to have connection details for your database at hand. This includes the following pieces of information:
+
+- **Host**: The host of your Postgres server, e.g. `localhost`.
+- **Port**: The port where your Postgres server listens, e.g. `5432`.
+- **User & Password**: The credentials for your Postgres server.
+- **Name of existing _database_**: The name of the Postgres _database_.
+- **Name of existing _schema_**: The name of the Postgres _schema_, e.g. `public`.
+
 ## Install the Prisma CLI
 
 The [Prisma CLI](https://www.npmjs.com/package/prisma) is used to deploy and manage Prisma services. You can install it using NPM:
@@ -35,17 +45,17 @@ npm install -g prisma
 
 To use Prisma locally, you need to have [Docker](https://www.docker.com) installed on your machine. If you don't have Docker yet, you can download the Docker Community Edition for your operating system [here](https://www.docker.com/community-edition).
 
-## Set up database and Prisma server
+## Set up Prisma server
 
 ### Create Docker Compose file
 
-To launch a Prisma server on your machine, you need a Docker Compose file that configures the Prisma server and specifies to which database it can connect.
+To launch a Prisma server on your machine, you need a Docker Compose file that configures the Prisma server and specifies to which database it can connect:
 
 ```bash
 touch docker-compose.yml
 ```
 
-### Add Prisma and database Docker images
+### Add Prisma Docker image
 
 Paste the following contents into the Docker Compose file you just created:
 
@@ -62,22 +72,26 @@ services:
         port: 4466
         databases:
           default:
-            connector: mysql
-            host: mysql
-            port: 3306
-            user: root
-            password: prisma
-            migrations: true
-  mysql:
-    image: postgres
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: prisma
-    volumes:
-      - mysql:/var/lib/mysql
-volumes:
-  mysql:
+            connector: postgres
+            host: __YOUR_POSTGRES_HOST__
+            port: __YOUR_POSTGRES_PORT__
+            database: __YOUR_POSTGRES_DB__
+            schema: __YOUR_POSTGRES_SCHEMA__
+            user: __YOUR_POSTGRES_USER__
+            password: __YOUR_POSTGRES_PASSWORD__
+            migrations: false
 ```
+
+### Specify database connection
+
+To specify the database to which your Prisma server should connect, replace the placeholders that are spelled all-uppercased in the Docker Compose files with the corresponding values of your database:
+
+- `__YOUR_POSTGRES_HOST__`: The host of your Postgres server, e.g. `localhost`.
+- `__YOUR_POSTGRES_PORT__`: The port where your Postgres server listens, e.g. `5432`.
+- `__YOUR_POSTGRES_DB__`: The name of your Postgres database.
+- `__YOUR_POSTGRES_SCHEMA__`: The name of your Postgres schema.
+- `__YOUR_POSTGRES_USER__`: The database user.
+- `__YOUR_POSTGRES_PASSWORD__`: The password for the database user.
 
 ### Start database and Prisma server
 
@@ -87,19 +101,38 @@ To start the Prisma server and launch the connected database, run the following 
 docker-compose up -d
 ```
 
-## Create a Prisma service
+## Introspect your database
 
-To bootstrap the service configuration files for your first Prisma service, create a new directory and initalize it using the `prisma init` command:
+You now need to introspect your database schema to generate the data model for your Prisma service:
 
 ```bash
-mkdir hello-world
-cd hello-world
-prisma init --endpoint http://localhost:4466
+prisma introspect
 ```
+
+In the interactive wizard, provide the same database connection details you specified in the Docker Compose file.
+
+The CLI will generat the `datamodel-[TIMESTAMP].graphql` file containing the SDL version of your database schema.
 
 ## Deploy the Prisma service
 
-The `prisma init` command created the _minimal_ service configuration needed to deploy a Prisma service: `prisma.yml` and `datamodel.graphql`. 
+### Create prisma.yml
+
+Before deploying the Prisma service, you need to create a prisma.yml:
+
+```bash
+touch prisma.yml
+```
+
+Now add the following contents to it:
+
+```yml
+endpoint: http://localhost:4466
+datamodel: __PATH_TO_YOUR_DATA_MODEL__
+```
+
+Replace the `__PATH_TO_YOUR_DATA_MODEL__` placeholder with the name of the file that contains the data model, e.g. `datamodel-1533112927.graphql`.
+
+### Deploy the service configuration to the local Prisma server
 
 This service configuration now needs to be _deployed_ so you can use the Prisma API of your service:
 
@@ -109,62 +142,8 @@ prisma deploy
 
 ## Explore the Prisma API in a Playground
 
-The Prisma API of your service exposes CRUD and realtime operations for the `User` type defined in `datamodel.graphql`. You can explore the API in a [GraphQL Playground](https://github.com/prismagraphql/graphql-playground) using the following command:
+The Prisma API of your service exposes CRUD and realtime operations for the types defined in your data model. You can explore the API in a [GraphQL Playground](https://github.com/prismagraphql/graphql-playground) using the following command:
 
 ```bash
 prisma playground
-```
-
-Here are a few sample queries and mutations you can send to explore the API.
-
-**Create a new `User`**:
-
-```graphql
-mutation {
-  createUser(data: {
-    name: "Alice"
-  }) {
-    id
-  }
-}
-```
-
-> Copy the `id` of the `createUser` object returned in the Playground and use it for the `__USER_ID__` placeholer value in the following `updateUser`- and `deleteUser`-mutations.
-
-**Query all `User`s**:
-
-```graphql
-query {
-  users {
-    id
-    name
-  }
-}
-```
-
-**Update a `User`'s `name`**:
-
-```graphql
-mutation {
-  updateUser(
-    where: { id: "__USER_ID__" },
-    data: { name: "Sarah" }
-  ) {
-    id
-    name
-  }
-}
-```
-
-**Delete a `User`**:
-
-```graphql
-mutation {
-  deleteUser(where: {
-    id: "__USER_ID__"
-  }) {
-    id
-    name
-  }
-}
 ```
