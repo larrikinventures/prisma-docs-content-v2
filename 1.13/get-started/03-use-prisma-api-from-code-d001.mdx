@@ -68,7 +68,7 @@ const prisma = new Prisma({
 
 Add the following code snippet _after_ the code you have added in the previous step:
 
-```js copy
+```js lineNumbers,copy
 // send `users` query
 prisma.query.users({}, `{ id name }`)
   .then(users => console.log(users))
@@ -125,7 +125,6 @@ Here is a sequential overview of the tasks performed by the Node script:
     }
   }
   ```
-
 1. Print the data of the newly created `User` that was received from the Prisma API using `console.log` (**line 13**).
 1. Fetch the newly created `User` using the `user` query (**line 18**):
 
