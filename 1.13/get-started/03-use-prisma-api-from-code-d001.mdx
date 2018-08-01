@@ -1,3 +1,6 @@
+import QueryChooser from 'components/Markdown/QueryChooser'
+import Collapse from 'components/Markdown/Collapse'
+
 export const meta = {
   title: 'Use Prisma API from Code',
   step: 3,
@@ -11,13 +14,13 @@ On this page, you will learn how to:
 - Create a Prisma binding for your Prisma API
 - Use the Prisma binding to send queries and mutations to your Prisma API
 
-> The Prisma API is a GraphQL API that's served via HTTP. You can therefore consume it using any HTTP tool you like, such as `curl` or JavaScript's `fetch`. On this page, you're using Prisma bindings which provide a convenient abstraction on top of `fetch` to reduce boilerplate and improve the developer experience when working with Prisma. 
+> The Prisma API is a GraphQL API that's served via HTTP. You can therefore consume it using any HTTP tool you like, such as `curl` or JavaScript's `fetch` ([learn more](nms2)). On this page, you're using [Prisma bindings](wer1) which provide a convenient abstraction on top of `fetch` to reduce boilerplate and improve the developer experience when working with Prisma. 
 
 ## Setup Node.JS project
 
 For this tutorial, you'll use an extremely simple setup for your Node.JS app. Create your project in a directory called `myapp` using the following commands; note that `myapp` should _not_ be located _inside_ the `hello-world` directory which holds the service configuration of your service:
 
-```bash
+```bash copy
 mkdir myapp
 cd myapp
 touch index.js
@@ -28,7 +31,7 @@ yarn init -y
 
 Go ahead and add the Prisma binding dependency to your project:
 
-```bash
+```bash copy
 yarn add prisma-binding graphql
 ```
 
@@ -38,7 +41,7 @@ When using Prisma bindings in your project, you need to have access to the auto-
 
 Download the GraphQL schema using the following command from the [GraphQL CLI](https://github.com/graphql-cli/graphql-cli); you need to replace the `__YOUR_PRISMA_ENDPOINT__`-placeholder with the actual endpoint of your Prisma API (which you can find in your `prisma.yml`).
 
-```bash
+```bash copy
 npx graphql get-schema --endpoint __YOUR_PRISMA_ENDPOINT__ --output prisma.graphql --no-all
 ```
 
@@ -52,7 +55,7 @@ Prisma bindings provide a convenient way to interact with Prisma APIs. Instead o
 
 It's time to write some code! Add the following snippet into `index.js`; like in the previous step you need to replace the `≥__YOUR_PRISMA_ENDPOINT__`-placeholder with your actual endpoint:
 
-```javascript
+```js copy
 const { Prisma } = require('prisma-binding')
 
 const prisma = new Prisma({
@@ -65,7 +68,7 @@ const prisma = new Prisma({
 
 Add the following code snippet _after_ the code you have added in the previous step:
 
-```bash
+```js copy
 // send `users` query
 prisma.query.users({}, `{ id name }`)
   .then(users => console.log(users))
@@ -94,7 +97,9 @@ prisma.query.users({}, `{ id name }`)
   .then(user => console.log(user))
 ```
 
-Here is what the code does:
+<Collapse title="What does the code do?">
+
+Here is a sequential overview of the tasks performed by the Node script:
 
 1. Fetch all `User`s from the Prisma API using the `users` query (**line 2**):
 
@@ -134,13 +139,14 @@ Here is what the code does:
   }
   ```
 
-  > TODO: Collapse and make the explanations expandable
+
+</Collapse>
 
 ## Execute the Node.JS script
 
 To run the script and actually send the above queries and mutations to your Prisma service, run the following command:
 
-```bash
+```bash copy
 node index.js
 ```
 

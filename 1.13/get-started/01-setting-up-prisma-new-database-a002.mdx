@@ -1,3 +1,5 @@
+import QueryChooser from 'components/Markdown/QueryChooser'
+
 export const meta = {
   title: 'Setting up Prisma',
   step: 1,
@@ -19,7 +21,7 @@ On this page, you will learn how to:
 
 The [Prisma CLI](https://www.npmjs.com/package/prisma) is used to deploy and manage Prisma services. You can install it using NPM:
 
-```bash
+```bash copy
 npm install -g prisma
 ```
 
@@ -33,7 +35,7 @@ To use Prisma locally, you need to have [Docker](https://www.docker.com) install
 
 To launch a Prisma server on your machine, you need a Docker Compose file that configures the Prisma server and specifies the database it can connect to.
 
-```bash
+```bash copy
 touch docker-compose.yml
 ```
 
@@ -41,7 +43,7 @@ touch docker-compose.yml
 
 Paste the following contents into the Docker Compose file you just created:
 
-```yml
+```yml copy
 version: '3'
 services:
   prisma:
@@ -77,7 +79,7 @@ volumes:
 
 To start the Prisma server and launch the connected database, run the following command:
 
-```bash
+```bash copy
 docker-compose up -d
 ```
 
@@ -85,7 +87,7 @@ docker-compose up -d
 
 To bootstrap the service configuration files for your first Prisma service, create a new directory and initalize it using the `prisma init` command:
 
-```bash
+```bash copy
 mkdir hello-world
 cd hello-world
 prisma init --endpoint http://localhost:4466
@@ -97,7 +99,7 @@ The `prisma init` command created the _minimal_ service configuration needed to 
 
 This service configuration now needs to be _deployed_ so you can use the Prisma API of your service:
 
-```bash
+```bash copy
 prisma deploy
 ```
 
@@ -105,15 +107,16 @@ prisma deploy
 
 The Prisma API of your service exposes CRUD and realtime operations for the `User` type defined in `datamodel.graphql`. You can explore the API in a [GraphQL Playground](https://github.com/prismagraphql/graphql-playground) using the following command:
 
-```bash
+```bash copy
 prisma playground
 ```
 
 Here are a few sample queries and mutations you can send to explore the API.
 
-**Create a new `User`**:
 
-```graphql
+<QueryChooser titles={["Create a new User", "Query all Users", "Update a User's name", "Delete a User"]}>
+
+```graphql lineNumbers,copy
 mutation {
   createUser(data: {
     name: "Alice"
@@ -123,11 +126,7 @@ mutation {
 }
 ```
 
-> Copy the `id` of the `createUser` object returned in the Playground and use it for the `__USER_ID__` placeholer value in the following `updateUser`- and `deleteUser`-mutations.
-
-**Query all `User`s**:
-
-```graphql
+```graphql lineNumbers,copy
 query {
   users {
     id
@@ -136,9 +135,7 @@ query {
 }
 ```
 
-**Update a `User`'s `name`**:
-
-```graphql
+```graphql lineNumbers,copy
 mutation {
   updateUser(
     where: { id: "__USER_ID__" },
@@ -150,9 +147,7 @@ mutation {
 }
 ```
 
-**Delete a `User`**:
-
-```graphql
+```graphql lineNumbers,copy
 mutation {
   deleteUser(where: {
     id: "__USER_ID__"
@@ -162,3 +157,5 @@ mutation {
   }
 }
 ```
+
+</QueryChooser>

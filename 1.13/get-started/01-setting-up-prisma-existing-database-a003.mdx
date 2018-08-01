@@ -37,7 +37,7 @@ Make sure to have connection details for your database at hand. This includes th
 
 The [Prisma CLI](https://www.npmjs.com/package/prisma) is used to deploy and manage Prisma services. You can install it using NPM:
 
-```bash
+```bash copy
 npm install -g prisma
 ```
 
@@ -51,7 +51,7 @@ To use Prisma locally, you need to have [Docker](https://www.docker.com) install
 
 To launch a Prisma server on your machine, you need a Docker Compose file that configures the Prisma server and specifies to which database it can connect:
 
-```bash
+```bash copy
 touch docker-compose.yml
 ```
 
@@ -59,7 +59,7 @@ touch docker-compose.yml
 
 Paste the following contents into the Docker Compose file you just created:
 
-```yml
+```yml copy
 version: '3'
 services:
   prisma:
@@ -97,7 +97,7 @@ To specify the database to which your Prisma server should connect, replace the 
 
 To start the Prisma server and launch the connected database, run the following command:
 
-```bash
+```bash copy
 docker-compose up -d
 ```
 
@@ -105,7 +105,7 @@ docker-compose up -d
 
 You now need to introspect your database schema to generate the data model for your Prisma service:
 
-```bash
+```bash copy
 prisma introspect
 ```
 
@@ -119,13 +119,13 @@ The CLI will generat the `datamodel-[TIMESTAMP].graphql` file containing the SDL
 
 Before deploying the Prisma service, you need to create a prisma.yml:
 
-```bash
+```bash copy
 touch prisma.yml
 ```
 
 Now add the following contents to it:
 
-```yml
+```yml copy
 endpoint: http://localhost:4466
 datamodel: __PATH_TO_YOUR_DATA_MODEL__
 ```
@@ -136,7 +136,7 @@ Replace the `__PATH_TO_YOUR_DATA_MODEL__` placeholder with the name of the file 
 
 This service configuration now needs to be _deployed_ so you can use the Prisma API of your service:
 
-```bash
+```bash copy
 prisma deploy
 ```
 
@@ -144,6 +144,6 @@ prisma deploy
 
 The Prisma API of your service exposes CRUD and realtime operations for the types defined in your data model. You can explore the API in a [GraphQL Playground](https://github.com/prismagraphql/graphql-playground) using the following command:
 
-```bash
+```bash copy
 prisma playground
 ```

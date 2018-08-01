@@ -20,7 +20,7 @@ On this page, you will learn how to:
 
 The [Prisma CLI](https://www.npmjs.com/package/prisma) is used to deploy and manage Prisma services. You can install it using NPM:
 
-```bash
+```bash copy
 npm install -g prisma
 ```
 
@@ -28,7 +28,7 @@ npm install -g prisma
 
 To bootstrap the configuration files for your first Prisma service, create a new directory and initalize it using the `prisma init` command:
 
-```bash
+```bash copy
 mkdir hello-world
 cd hello-world
 prisma init
@@ -45,7 +45,7 @@ After running `prisma init`, the Prisma CLI prompts you to select _how_ you want
 
 The `prisma init` command created the _minimal_ service configuration needed to deploy a Prisma service: `prisma.yml` and `datamodel.graphql`. This service configuration now needs to be _deployed_ so you can use the Prisma API of your service:
 
-```bash
+```bash copy
 prisma deploy
 ```
 
@@ -53,8 +53,7 @@ prisma deploy
 
 The Prisma API of your service exposes CRUD operations for the `User` type defined in `datamodel.graphql`. Here are a few sample queries and mutations you can send to explore the API.
 
-
-<QueryChooser titles={["Create a new `User`", "Query all `User`s", "Update a `User`'s `name`", "Delete a `User`"]}>
+<QueryChooser titles={["Create a new User", "Query all Users", "Update a User's name", "Delete a User"]}>
 
 ```graphql lineNumbers,copy
 mutation {
@@ -97,6 +96,5 @@ mutation {
   }
 }
 ```
-
 
 </QueryChooser>
