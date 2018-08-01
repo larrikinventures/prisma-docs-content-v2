@@ -3,6 +3,7 @@ import QueryChooser from 'components/Markdown/QueryChooser'
 export const meta = {
   title: 'Update Prisma API',
   step: 2,
+  nextText: 'Fantastic! 🎉 You are now able to make changes to your Prisma API. Learn how to consume the API using Prisma bindings next.'
 }
 
 ## Goals
@@ -52,7 +53,7 @@ Because of the relation that was added to the data model, you can now send _nest
 
 <QueryChooser titles={["Create post & user","Query users & posts"]}>
 
-```graphql copy
+```graphql lineNumbers,copy
 mutation {
   createPost(data: {
     title: "GraphQL is great"
@@ -71,7 +72,7 @@ mutation {
 }
 ```
 
-```graphql copy
+```graphql lineNumbers,copy
 query {
   users {
     id

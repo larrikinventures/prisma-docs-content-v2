@@ -4,6 +4,7 @@ import Collapse from 'components/Markdown/Collapse'
 export const meta = {
   title: 'Use Prisma API from Code',
   step: 3,
+  nextText: 'Bonkerz! 💯 With everything you learned so far, you\'re now able to build a GraphQL server with Prisma and Prisma bindings. Let\'s go!'
 }
 
 ## Goals
@@ -102,7 +103,6 @@ prisma.query.users({}, `{ id name }`)
 Here is a sequential overview of the tasks performed by the Node script:
 
 1. Fetch all `User`s from the Prisma API using the `users` query (**line 2**):
-
   ```graphql
   query {
     users {
@@ -111,10 +111,8 @@ Here is a sequential overview of the tasks performed by the Node script:
     }
   }
   ```
-
 1. Print the data that was received from the Prisma API using `console.log` (**line 3**). 
 1. Create a new `User` using the `createUser` mutation (**line 6**):
-
   ```graphql
   mutation {
     createUser(data: {
@@ -127,7 +125,6 @@ Here is a sequential overview of the tasks performed by the Node script:
   ```
 1. Print the data of the newly created `User` that was received from the Prisma API using `console.log` (**line 13**).
 1. Fetch the newly created `User` using the `user` query (**line 18**):
-
   ```graphql
   query {
     user(where: {
@@ -137,7 +134,6 @@ Here is a sequential overview of the tasks performed by the Node script:
     }
   }
   ```
-
 
 </Collapse>
 
