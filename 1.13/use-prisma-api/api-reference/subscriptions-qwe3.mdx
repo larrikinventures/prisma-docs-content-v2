@@ -9,11 +9,11 @@ export const meta = {
 
 ### How are subscriptions in the Prisma API generated?
 
-The GraphQL API of a Prisma service is specified in the Prisma database schema. The Prisma database schema is auto-generated based on the service's data model:
+The GraphQL API of a Prisma service is specified in the Prisma GraphQL schema. The Prisma GraphQL schema is auto-generated based on the service's data model:
 
 ![](https://imgur.com/ZIjHLpL.png)
 
-The `Subscription` type of the Prisma database schema defines all the subscriptions the Prisma API accepts.
+The `Subscription` type of the Prisma GraphQL schema defines all the subscriptions the Prisma API accepts.
 
 As an example, consider the following data model:
 
@@ -36,7 +36,7 @@ For every type in your data model, one subscription is generated. Taking above t
 
 - `user`: Fires whenever a `User` node is **created**, **updated** or **deleted**. (Except for [batch mutations](qwe2#batch-mutations)).
 
-To inspect all the available operations of your Prisma API in detail, you can read the Prisma database schema of your Prisma service. It can be downloaded with the [GraphQL CLI](https://github.com/graphql-cli/graphql-cli): 
+To inspect all the available operations of your Prisma API in detail, you can read the Prisma GraphQL schema of your Prisma service. It can be downloaded with the [GraphQL CLI](https://github.com/graphql-cli/graphql-cli): 
 
 ```bash
 graphql get-schema --endpoint __YOUR_PRISMA_ENDPOINT__ --output prisma.graphql --no-all
@@ -74,7 +74,7 @@ Prisma lets you *subscribe* to three different kinds of events (per type in your
 - an existing `Post` nodes is *updated*
 - an existing `Post` nodes is *deleted*
 
-The corresponding definition of the `Subscription` type looks as follows (this definition can be found in the Prisma database schema):
+The corresponding definition of the `Subscription` type looks as follows (this definition can be found in the Prisma GraphQL schema):
 
 ```graphql
 type Subscription {

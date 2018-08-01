@@ -193,7 +193,7 @@ Before discussing how to implement your resolvers using Prisma bindings and sche
 
 The most important part to understand is that when building GraphQL servers with Prisma, you're dealing with two(!) GraphQL APIs:
 
-- The **database layer** is provided by Prisma's CRUD/realtime GraphQL API. The GraphQL schema defining this API is the auto-generated **Prisma database schema**.
+- The **database layer** is provided by Prisma's CRUD/realtime GraphQL API. The GraphQL schema defining this API is the auto-generated **Prisma GraphQL schema**.
 - The **application layer** is responsible for any functionality that's _not directly_ related to writing or reading data from the database (like business logic, authentication and permissions, 3rd-party integrations,...). When working with Node.JS, the application layer is commonly implemented with the [`graphql-yoga`](https://github.com/graphcool/graphql-yoga) library. The GraphQL schema defining the API of the application layer is called **application schema**.
 
 ![](https://imgur.com/0kUAOBp.png)
@@ -242,7 +242,7 @@ datatamodel: datamodel.graphql
 
 Now you can run `prisma deploy` and the service will be deployed to a Prisma server running on `http://localhost:4466`.
 
-The Prisma database schema for the generated Prisma API looks similar to this (this is a shortened version, find the full version [here](https://gist.github.com/nikolasburk/88f08d6e8d863dbe5c67ec92cec7011e)):
+The Prisma GraphQL schema for the generated Prisma API looks similar to this (this is a shortened version, find the full version [here](https://gist.github.com/nikolasburk/88f08d6e8d863dbe5c67ec92cec7011e)):
 
 ```graphql
 type Post implements Node {
@@ -272,7 +272,7 @@ The API defined by this schema can now be accessed on `http://localhost:4466`.
 
 #### 2.1. Write application schema
 
-> In the following it is assumed, that the Prisma database schema is available to the application layer as a file called `prisma.graphql` (it might have been downloaded via a _post-deployment hook_).
+> In the following it is assumed, that the Prisma GraphQL schema is available to the application layer as a file called `prisma.graphql` (it might have been downloaded via a _post-deployment hook_).
 
 To write the application schema, you need to think about the API operations that should be exposed to your clients. This is your chance to transform Prisma's generic CRUD operations into a domain-specific API suited to your clients' needs.
 

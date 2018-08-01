@@ -17,7 +17,7 @@ constructor(options: PrismaOptions): Prisma
 
 The `PrismaOptions` type has the following fields:
 
-- `typeDefs: string` (**required**): File path to the schema definition of your Prisma database schema (typically a file called `prisma.graphql`).
+- `typeDefs: string` (**required**): File path to the schema definition of your Prisma GraphQL schema (typically a file called `prisma.graphql`).
 - `endpoint: string` (**required**): Endpoint of your Prisma API.
 - `secret: secret`: The service secret of your Prisma service (specified in prisma.yml).
 - `fragmentReplacements: FragmentReplacement[]`: A list of GraphQL fragment definitions, specifying fields that are required for the resolver to function correctly.
@@ -35,7 +35,7 @@ const prisma = new Prisma({
 
 ## query & mutation
 
-`query` and `mutation` are public properties on the `Prisma` binding instance. They both are of type `QueryMap` and expose a number of auto-generated binding functions that are named after the root fields on the `Query` and `Mutation` types in your Prisma database schema.
+`query` and `mutation` are public properties on the `Prisma` binding instance. They both are of type `QueryMap` and expose a number of auto-generated binding functions that are named after the root fields on the `Query` and `Mutation` types in your Prisma GraphQL schema.
 
 Each of these binding functions provides a convenience API for sending queries/mutations to your Prisma service, so you don't have to spell out the full query/mutation nor worry about sending it over the network. This is all handled by the binding function.
 

@@ -35,7 +35,7 @@ If there is only a single file that defines the data model, it can be specified 
 datamodel: datamodel.graphql
 ```
 
-The data model is the foundation for the GraphQL API of your Prisma service. Based on the data model, Prisma generates a [GraphQL schema](https://www.prisma.io/blog/graphql-server-basics-the-schema-ac5e2950214e/) (called **Prisma database schema**) with CRUD and realtime operations for the models defined in the data model.
+The data model is the foundation for the GraphQL API of your Prisma service. Based on the data model, Prisma generates a [GraphQL schema](https://www.prisma.io/blog/graphql-server-basics-the-schema-ac5e2950214e/) (called **Prisma GraphQL schema**) with CRUD and realtime operations for the models defined in the data model.
 
 > A [GraphQL schema](https://www.prisma.io/blog/graphql-server-basics-the-schema-ac5e2950214e/) defines the operations of a GraphQL API. It effectively is a collection of _types_ written in SDL (SDL also supports primitives like interfaces, enums, union types and more, you can learn everything about GraphQL's type system [here](http://graphql.org/learn/schema/#type-system)). A GraphQL schema has three special _root types_: `Query`, `Mutation` and `Subscription`. These types define the _entry points_ for the API and define what operations the API will accept. To learn more about GraphQL schema, check out this [article](https://www.prisma.io/blog/graphql-server-basics-the-schema-ac5e2950214e/).
 
@@ -137,20 +137,20 @@ Applying changes... (22/22)
 Applying changes... 0.4s
 ```
 
-## Data model vs Prisma database schema
+## Data model vs Prisma GraphQL schema
 
 When starting out with GraphQL and Prisma, the amount of `.graphql`-files you're working with can be confusing. Yet, it's crucial to understand what the role of each of them is.
 
 Looking only at Prisma, there are two `.graphql`-files that are relevant:
 
 - The **data model** containing the _model definitions_ for your service's APIs, typically called `datamodel.graphql`.
-- The **Prisma database schema** defining the actual CRUD/realtime _operations_ of the service's API, typically called `prisma.graphql`.
+- The **Prisma GraphQL schema** defining the actual CRUD/realtime _operations_ of the service's API, typically called `prisma.graphql`.
 
 The Prisma database database schema is generated based on the data model:
 
 ![](https://imgur.com/ZIjHLpL.png)
 
-The illustration shows a simplified version of the generated Prisma database schema, you can find the full schema [here](https://gist.github.com/gc-codesnippets/f302c104f2806f9e13f41d909e07d82d).
+The illustration shows a simplified version of the generated Prisma GraphQL schema, you can find the full schema [here](https://gist.github.com/gc-codesnippets/f302c104f2806f9e13f41d909e07d82d).
 
 > TODO: mention directives
 
@@ -162,21 +162,21 @@ Strictly speaking, the **data model is not a valid GraphQL schema** because it d
 
 The data model only serves as _foundation_ for the generation of the actual GraphQL schema that defines the GraphQL API of your Prisma service.
 
-### The Prisma database schema
+### The Prisma GraphQL schema
 
-The Prisma database schema can be dowloaded from a Prisma service using the `get-schema` command of the [GraphQL CLI](https://github.com/graphql-cli/graphql-cli) or via an [introspection query](https://graphql.org/learn/introspection/) made directly against the service's API.
+The Prisma GraphQL schema can be dowloaded from a Prisma service using the `get-schema` command of the [GraphQL CLI](https://github.com/graphql-cli/graphql-cli) or via an [introspection query](https://graphql.org/learn/introspection/) made directly against the service's API.
 
-#### Downloading the Prisma database schema using the service's endpoint
+#### Downloading the Prisma GraphQL schema using the service's endpoint
 
-Assuming `http://localhost:4466/myservice/dev` is the endpoint of your service, this is the command you need to run in order to download the Prisma database schema and store it in a file called `prisma.graphql`:
+Assuming `http://localhost:4466/myservice/dev` is the endpoint of your service, this is the command you need to run in order to download the Prisma GraphQL schema and store it in a file called `prisma.graphql`:
 
 ```bash
 graphql get-schema --endpoint http://localhost:4466/myservice/dev --output prisma.graphql --no-all
 ```
 
-#### Downloading the Prisma database schema using graphql-config and a post-deployment hook
+#### Downloading the Prisma GraphQL schema using graphql-config and a post-deployment hook
 
-In real-world development setups, you want to keep your local Prisma database schema in sync with the service's API and ensure it gets updated upon every deploy of your Prisma service. That's what you can a use a _post-deployment_ [hook](5cy7#hooks-optional) for.
+In real-world development setups, you want to keep your local Prisma GraphQL schema in sync with the service's API and ensure it gets updated upon every deploy of your Prisma service. That's what you can a use a _post-deployment_ [hook](5cy7#hooks-optional) for.
 
 This is what a `.graphqlconfig.yml` and prisma.yml might look like in such as setups:
 
@@ -237,7 +237,7 @@ A type has a _name_ and one or multiple [_fields_](#fields). Type names can only
 
 An instantiation of a type is called a _node_. This term refers to a node inside your _data graph_.
 
-Every type you define in your data model will be available as an analogous type in the generated _Prisma database schema_.
+Every type you define in your data model will be available as an analogous type in the generated _Prisma GraphQL schema_.
 
 ### Defining an object type
 
@@ -583,7 +583,7 @@ The `id` has the following properties:
 * Always starts with a (lowercase) letter, e.g. `c`
 * Follows [cuid](https://github.com/ericelliott/cuid) (_collision resistant unique identifiers_) scheme
 
-Notice that all model types in the Prisma database schema will implement the `Node` interface. This is what the `Node` interface looks like:
+Notice that all model types in the Prisma GraphQL schema will implement the `Node` interface. This is what the `Node` interface looks like:
 
 ```graphql
 interface Node {

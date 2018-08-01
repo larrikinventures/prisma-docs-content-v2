@@ -7,7 +7,7 @@ export const meta = {
 
 Prisma bindings are GraphQL bindings specifically for Prisma APIs. Think of them as an (auto-generated) **SDK for Prisma**.
 
-The functions exposed by a Prisma binding are named after the _root fields_ of the Prisma database schema (which defines your Prisma API). Each function call constructs and sends the respective query/mutation to the Prisma API.
+The functions exposed by a Prisma binding are named after the _root fields_ of the Prisma GraphQL schema (which defines your Prisma API). Each function call constructs and sends the respective query/mutation to the Prisma API.
 
 Consider the following sample service configuration for a Prisma service:
 
@@ -40,7 +40,7 @@ const prisma = new Prisma({
 })
 ```
 
-- `typeDefs`: The path to the Prisma database schema
+- `typeDefs`: The path to the Prisma GraphQL schema
 - `endpoint`: The endpoint of your Prisma API
 - `secret`: The service secret defined in prisma.yml
 
