@@ -620,7 +620,7 @@ type User {
 }
 ```
 
-### Generated API operations for relations
+### Generated API operations for fields
 
 Fields in the data model affect the available [query arguments](tbd).
 
@@ -703,7 +703,7 @@ Note that in this case the relation needs to be annotated with the [`@relation` 
 
 For a _to-one_ relation field, you can configure whether it is _required_ or _optional_. The `!` type modifier acts as a contract in GraphQL that this field can never be `null`. A field for the address of a user would therefore be of type `Address` or `Address!`.
 
-Nodes for a type that contains a required _to-one_ relation field can only be created using a [nested mutation](!alias-ol0yuoz6go#nested-mutations) to ensure the respective field will not be `null`.
+Nodes for a type that contains a required _to-one_ relation field can only be created using a [nested mutation](qwe2#nested-mutations) to ensure the respective field will not be `null`.
 
 Consider again the following relation:
 
@@ -859,11 +859,11 @@ Let's investigate the deletion behaviour for the three types:
 
 ### Generated API operations for relations
 
-The relations that are included in your schema affect the available operations in the [Prisma API](!alias-abogasd0go). Here is an overview of the generated CRUD and realtime operations for every relation in your Prisma API: 
+The relations that are included in your schema affect the available operations in the [Prisma API](/1.13/use-prisma-api). Here is an overview of the generated CRUD and realtime operations for every relation in your Prisma API: 
 
-- [Relation queries](!alias-ahwee4zaey#querying-data-across-relations) allow you to query data across types or aggregated for a relation (note that this is also possible using [Relay](https://facebook.github.io/relay/)'s [connection model](!alias-ahwee4zaey#connection-queries)).
-- [Nested mutations](!alias-ol0yuoz6go#nested-mutations) allow you to create, connect, update, upsert and delete multiple related nodes within the same mutation.
-- [Relation subscriptions](!alias-aey0vohche#relation-subscriptions) allow you to get notified of changes to a relation.
+- [Relation queries](qwe1#querying-data-across-relations) allow you to query data across types or aggregated for a relation (note that this is also possible using [Relay](https://facebook.github.io/relay/)'s [connection model](qwe1#connection-queries)).
+- [Nested mutations](qwe2#nested-mutations) allow you to create, connect, update, upsert and delete multiple related nodes within the same mutation.
+- [Relation subscriptions](qwe3#relation-subscriptions) allow you to get notified of changes to a relation.
 
 ## GraphQL directives
 

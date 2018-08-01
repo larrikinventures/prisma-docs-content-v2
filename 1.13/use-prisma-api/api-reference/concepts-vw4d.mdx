@@ -72,7 +72,7 @@ mutation {
 }
 ```
 
-**Update `published` of a many `Post` nodes at once** (also see [Batch operations](#batch-operations)):
+**Update `published` of a many `Post` nodes at once** (also see [Batch mutations](#batch-mutations)):
 
 ```graphql
 mutation {
@@ -89,9 +89,9 @@ mutation {
 }
 ```
 
-## Batch operations
+## Batch mutations
 
-One application of the node selection concept are the [batch operations](!alias-utee3eiquo#batch-operations) exposed by the Prisma API. Batch updating or deleting is optimized for making changes to a large number of nodes. As such, these mutations only return _how many_ nodes have been affected, rather than full information on specific nodes.
+One application of the node selection concept are the [batch mutations](qwe2#batch-mutations) exposed by the Prisma API. Batch updating or deleting is optimized for making changes to a large number of nodes. As such, these mutations only return _how many_ nodes have been affected, rather than full information on specific nodes.
 
 For example, the mutations `updateManyPosts` and `deleteManyPosts` provide a `where` argument to select specific nodes, and return a `count` field with the number of affected nodes (see the example above).
 
@@ -109,7 +109,7 @@ mutation {
 
 <Warning>
 
-Note that no [subscription](!alias-aey0vohche) events are triggered for batch mutations!
+Note that no [subscription](qwe3) events are triggered for batch mutations!
 
 </Warning>
 
@@ -171,7 +171,7 @@ query {
 
 ## Transactions & Nested mutations
 
-Single mutations in the Prisma API that are not batch operations are always executed _transactionally_, even if they consist of many actions that potentially spread across multiple related nodes. This is especially useful for [nested mutations](!alias-ol0yuoz6go#nested-mutations) that perform several database writes on multiple types.
+Single mutations in the Prisma API that are not batch operations are always executed _transactionally_, even if they consist of many actions that potentially spread across multiple related nodes. This is especially useful for [nested mutations](qwe2#nested-mutations) that perform several database writes on multiple types.
 
 Nested mutations are mutations that are touching _at least_ two nodes, each of a different type. Here is a simple example:
 
@@ -256,7 +256,7 @@ Let's investigate the deletion behaviour for the three types:
   - the related `Blog` node continues to exist and the deleted `Comment` node is removed from its `comments` list.
   - the related `User` node continues to exist and the deleted `Comment` node is removed from its `comments` list.
 
-You can find more detailled info about the `@relation` directive and its usage [here](!alias-eiroozae8u#the-relation-directive).
+You can find more detailled info about the `@relation` directive and its usage [here](knul#the-@relation-directive).
 
 ## Authentication
 

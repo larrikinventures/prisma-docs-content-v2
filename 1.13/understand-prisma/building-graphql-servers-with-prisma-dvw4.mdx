@@ -66,25 +66,28 @@ To achieve this, you need to invoke the `users` function as follows:
 binding.query.users({}, `{ id name }`)
 ```
 
-The first argument passed to `users` is an empty object (because the `users` root field in the schema definition above doesn't accept any parameters). The second argument is the selection set - to achieve the same result as the sample query above, we need to include `id` and the `name`.
+The first argument passed to `users` is an empty object (because the `users` root field in the schema definition above doesn't accept any parameters). 
 
-> The selection set passed as the second argument actually is a _GraphQL fragment_ (in this case on the `User` type). Binding functions however accept a shorthand notation that omits the `fragment` keyword as well the fragment name. So instead of:
->
+The second argument is the selection set - to achieve the same result as the sample query above, we need to include `id` and the `name`.
+
+The selection set passed as the second argument actually is a _GraphQL fragment_ (in this case on the `User` type). Binding functions however accept a shorthand notation that omits the `fragment` keyword as well the fragment name. So instead of:
+
 ```graphql
 fragment UserFragment on User {
   id
   name
 }
 ```
->
-> you can simply write: 
->
+
+you can simply write: 
+
 ```
 { id name }
 ````
-> New lines are generally ignored in GraphQL.
 
-Let's now go through the same exercise for the `createUser` mutation, here's the mutation we want to send to the GraphQL API using one of the binding functions:
+New lines are generally ignored in GraphQL.
+
+Let's now go through the same exercise for `createUser` and think about how we can send the following mutation using one of the binding functions:
 
 ```graphql
 mutation {
@@ -102,7 +105,7 @@ binding.mutation.createUser({ name: "Sarah" }, `{ id }`)
 
 This time, we're providing an object that contains the values for the parameters of the mutation as the first argument. In this case, there's only the `name` to be provided. 
 
-Like with the `users` query, we're also passing the selection set (written again as a shorthand GraphQL fragment) as the second argument. Because the selection set in the sample mutation above only includes the `id`, that's what we're doing in the function call as well.
+Similar to the `users` query, we're also passing the selection set (written again as a shorthand GraphQL fragment) as the second argument. Because the selection set in the sample mutation above only includes the `id`, that's what we're doing in the function call as well.
 
 ### GraphQL bindings: An auto-generated SDK for your GraphQL API
 
@@ -175,7 +178,7 @@ Prisma bindings can be used in two _modes_:
 
 The second mode is referred to as _schema delegation_. Schema delegation only works when there is an `info` object available and therefore the _only context where schema delegation is possible is inside of resolver functions_.
 
-> The `info` object is the _fourth_ argument passed into a resolver function. It carries the AST and other useful information about the query that's currently being resolved, e.g. what parameter values were provided. You can learn more about the `info` object in [this](https://www.prisma.io/blog/graphql-server-basics-demystifying-the-info-argument-in-graphql-resolvers-6f26249f613a/) in-depth article.
+> The `info` object is the _fourth_ argument passed into a resolver function. It carries the AST and other useful information about the query that's currently being resolved, e.g. what parameter values were provided. Learn more about it [here](https://www.prisma.io/blog/graphql-server-basics-demystifying-the-info-argument-in-graphql-resolvers-6f26249f613a/).
 
 The idea of schema delegation is that a GraphQL query that's received by GraphQL server **`A`** is not resolved by **`A`**'s execution engine. Instead, **`A`** _delegates_ the query to GraphQL server **`B`** whose GraphQL execution engine will finally take care of resolving the query.
 
@@ -272,7 +275,7 @@ The API defined by this schema can now be accessed on `http://localhost:4466`.
 
 #### 2.1. Write application schema
 
-> In the following it is assumed, that the Prisma GraphQL schema is available to the application layer as a file called `prisma.graphql` (it might have been downloaded via a _post-deployment hook_).
+> In the following it is assumed that the Prisma GraphQL schema is available to the application layer as a file called `prisma.graphql` (it might have been downloaded via a _post-deployment hook_).
 
 To write the application schema, you need to think about the API operations that should be exposed to your clients. This is your chance to transform Prisma's generic CRUD operations into a domain-specific API suited to your clients' needs.
 

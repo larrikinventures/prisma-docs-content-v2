@@ -14,7 +14,7 @@ To get an overview of the major differences between Prisma and the Graphcool Fra
 
 ## Migrating to Prisma
 
-We recommend that you migrate your project in a development environment before putting it into production. This ensures a smooth migration process. You can use the [import]() and [export]() functionality for Graphcool/Prisma services to migrate data between different projects.
+We recommend that you migrate your project in a development environment before putting it into production. This ensures a smooth migration process. You can use the [import and export](jsw9) functionality for Graphcool/Prisma services to migrate data between different projects.
 
 ## New architecture: Your GraphQL server uses Prisma as a database layer
 
@@ -25,10 +25,10 @@ The core idea when building GraphQL servers with Prisma is that you have **two G
 
 In that new architecture, the application layer is entirely responsible for business logic and other common workflows such as authentication, permissions or file handling. Rather than writing [Resolver](https://www.graph.cool/docs/reference/functions/resolvers-su6wu3yoo2) or [Hook](https://www.graph.cool/docs/reference/functions/hooks-pa6guruhaf) functions, you are now simply implementing traditional GraphQL resolvers.
 
-Implementing resolvers in your application layer doesn't require a lot of overhead since incoming requests can simply be delegated to the underlying Prisma API using the [`prisma-binding`]() package.
+Implementing resolvers in your application layer doesn't require a lot of overhead since incoming requests can simply be delegated to the underlying Prisma API using the [`prisma-binding`](https://github.com/prismagraphql/prisma-binding) package.
 
 ## Deployment
 
-Another major difference with Prisma, compared to using the Graphcool Framework, is that you now need to take care of deploying the GraphQL server. One great option for doing so is the Zeit Now one-click deployment tool, you can read a tutorial [here](). Another option is [up](https://up.docs.apex.sh).
+Another major difference with Prisma, compared to using the Graphcool Framework, is that you now need to take care of deploying the GraphQL server. One great option for doing so is the Zeit Now one-click deployment tool. Another option is [up](https://up.docs.apex.sh).
 
 Your Prisma service is running on Docker and can be deployed to any cloud provider, such as Digital Ocean or AWS. There also are deployment options based on the Prisma Cloud.
