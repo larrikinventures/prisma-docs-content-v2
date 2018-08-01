@@ -1,3 +1,5 @@
+import Warning from 'components/Markdown/Warning'
+
 export const meta = {
   title: 'prisma.yml',
   position: 10,
@@ -140,7 +142,7 @@ A _variable source_ can be either of the following two options:
 - A _recursive self-reference_ to another value inside the same service (often used in combination with the `custom` property)
 - An _environment variable_
 
-> **Note**: You can only use variables in property **values** - not in property keys. So you can't use variables to e.g. generate dynamic logical IDs in the custom resources section for example.
+> You can only use variables in property **values** - not in property keys. So you can't use variables to e.g. generate dynamic logical IDs in the custom resources section for example.
 
 ### Recursive self-reference
 
@@ -162,7 +164,7 @@ custom:
   serverlessEndpoint: example.org
 ```
 
-> **Note**: This works for any property inside prisma.yml, not just `custom`.
+> This works for any property inside prisma.yml, not just `custom`.
 
 ### Environment variable
 
@@ -287,7 +289,11 @@ A secret must follow these requirements:
 
 Note that it's possible to encode multiple secrets in this string, which allows for smooth secret rotations.
 
-> **WARNING**: If the Prisma service is deployed without a `secret`, its API does not require authentication. This means everyone with access to the `endpoint` is able to send queries and mutations to the API and can therefore arbitrarily read and write to the database!
+<Warning>
+
+If the Prisma service is deployed without a `secret`, its API does not require authentication. This means everyone with access to the `endpoint` is able to send queries and mutations to the API and can therefore arbitrarily read and write to the database!
+
+</Warning>
 
 #### Type
 

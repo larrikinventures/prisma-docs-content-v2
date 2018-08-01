@@ -1,7 +1,9 @@
+import Collapse from 'components/Markdown/Collapse'
+
 export const meta = {
   title: "Prisma Introduction: What, Why & How",
   position: 10,
-  description: ''
+  description: 'Learn about Prisma\'s use cases, main benefits and how it fits into your stack.'
 }
 
 ## What is Prisma?
@@ -20,9 +22,9 @@ Prisma lets you:
 
 **Prisma's main use case is to provide the _data access layer_ (_think ORM_) for API servers.** Because of its GraphQL engine, Prisma is _most often_ used to build GraphQL APIs but also works with REST or any other API paradigm. 
 
-More use cases for Prisma are scripts, functions, queue workers or any other  context where developers need to talk to a database. 
+Other use cases for Prisma are scripts, functions, queue workers or any other  context where developers need to talk to a database. 
 
-When building a GraphQL server that uses Prisma as its data access layer, it is important to understand that the auto-generated Prisma GraphQL API is *not* consumed by your client applications - instead you build the actual *application server* on top of Prisma.
+When building a GraphQL server that uses Prisma as its data access layer, it is important to understand that the auto-generated Prisma GraphQL API is _not_ consumed by your client applications - instead you build the actual _application server_ on top of Prisma.
 
 ### What Prisma is not
 
@@ -33,11 +35,14 @@ To prevent misconceptions about Prisma, here's a list of **what Prisma is not**:
 - ... **a BaaS/PaaS** - Prisma doesn't replace your entire backend and isn't a hosted service/hosting provider.
 - ... an [AI painting app](https://prisma-ai.com/) 😑
 
-### A note on Prisma Cloud
+<Collapse title="A note on Prisma Cloud">
 
-_Prisma_ is open-source and can be used as a standalone infrastructure component hosted on your favorite cloud provider. _Prisma Cloud_ is an application (used through a CLI & web interface) that provides tools and services around Prisma. When you're using Prisma, usage of Prisma Cloud is optional.
+_Prisma_ is open-source and can be used as a standalone infrastructure component hosted on your favorite cloud provider. [_Prisma Cloud_](https://www.prisma.io/cloud) is an application (used through a CLI & web interface) that provides tools and services around Prisma. When you're using Prisma, usage of Prisma Cloud is optional.
 
 The goal of Prisma Cloud is to ease the workflows in Prisma projects. It features a **data browser**, a **deployment history** (soon with **automatic rollbacks**), various **team collaboration** options as well as **cloud provider integrations** to make it easy for developers to setup and maintain their Prisma servers.
+
+</Collapse>
+
 
 ## Why use Prisma?
 
@@ -138,7 +143,7 @@ Creating multiple microservices (each backed by one Prisma service) with clear r
 
 ![](https://imgur.com/maWhcQG.png)
 
-#### Architecture #4
+#### Architecture #3
 
 - 1 Prisma service
 - 1 Database
