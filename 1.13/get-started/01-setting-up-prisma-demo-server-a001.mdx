@@ -1,3 +1,5 @@
+import QueryChooser from 'components/Markdown/QueryChooser'
+
 export const meta = {
   title: 'Setting up Prisma',
   step: 1,
@@ -51,9 +53,10 @@ prisma deploy
 
 The Prisma API of your service exposes CRUD operations for the `User` type defined in `datamodel.graphql`. Here are a few sample queries and mutations you can send to explore the API.
 
-**Create a new `User`**:
 
-```graphql
+<QueryChooser titles={["Create a new `User`", "Query all `User`s", "Update a `User`'s `name`", "Delete a `User`"]}>
+
+```graphql lineNumbers,copy
 mutation {
   createUser(data: {
     name: "Alice"
@@ -63,11 +66,7 @@ mutation {
 }
 ```
 
-> Copy the `id` of the `createUser` object returned in the Playground and use it for the `__USER_ID__` placeholer value in the upcoming `updateUser`- and `deleteUser`-mutations.
-
-**Query all `User`s**:
-
-```graphql
+```graphql lineNumbers,copy
 query {
   users {
     id
@@ -76,9 +75,7 @@ query {
 }
 ```
 
-**Update a `User`'s `name`**:
-
-```graphql
+```graphql lineNumbers,copy
 mutation {
   updateUser(
     where: { id: "__USER_ID__" },
@@ -90,9 +87,7 @@ mutation {
 }
 ```
 
-**Delete a `User`**:
-
-```graphql
+```graphql lineNumbers,copy
 mutation {
   deleteUser(where: {
     id: "__USER_ID__"
@@ -102,3 +97,6 @@ mutation {
   }
 }
 ```
+
+
+</QueryChooser>
