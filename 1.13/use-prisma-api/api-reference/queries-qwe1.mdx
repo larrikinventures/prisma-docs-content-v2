@@ -82,7 +82,7 @@ enum AccessRole {
 
 The Prisma API offers two kinds of queries:
 
-* **Object queries**: Fetch _single_ or _multiple_ nodes of a certain [object type](!alias-eiroozae8u#object-types).
+* **Object queries**: Fetch _single_ or _multiple_ nodes of a certain [object type](knul#object-types).
 * **Connection queries**: Expose advanced features like _aggregations_ and [Relay compliant connections](https://facebook.github.io/relay/graphql/connections.htm) enabling a powerful pagination model.
 
 When working with the Prisma API, the following concepts are also useful to keep in mind:
@@ -151,7 +151,7 @@ query {
 }
 ```
 
-You can read more about [node selection here](!alias-utee3eiquo#node-selection).
+You can read more about [node selection here](vw4d#node-selection).
 
 ## Connection queries
 
@@ -195,7 +195,7 @@ query {
 
 ## Querying data across relations
 
-Every available [relation](!alias-eiroozae8u#relations) in your data model adds a new field to the queries of the two models it connects.
+Every available [relation](knul#relations) in your data model adds a new field to the queries of the two models it connects.
 
 Here, we are fetching a specific `User` node, and all its related `Post` nodes using the `posts` field:
 
@@ -470,7 +470,7 @@ Currently, neither [**scalar list filters**](https://github.com/prismagraphql/fe
 
 ## Pagination
 
-When querying all nodes of a specific [object type](!alias-eiroozae8u#object-types), you can supply arguments that allow you to _paginate_ the query response.
+When querying all nodes of a specific [object type](knul#object-types), you can supply arguments that allow you to _paginate_ the query response.
 
 ### Seeking forward and backward with `first` and `last`
 
