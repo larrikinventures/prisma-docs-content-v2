@@ -1,13 +1,12 @@
+import Warning from 'components/Markdown/Warning'
+
 export const meta = {
   title: 'Introduction to GraphQL Server Development',
   position: 30,
+  description: 'This page is only relevant if you are not familiar with the main concepts of GraphQL server development, such as the GraphQL schema, its root fields and resolver functions. If you already know about these, you can skip this page.'
 }
 
-> This page is only relevant if you have never built a GraphQL server before and are not yet familiar with the concepts of a GraphQL schema, its root fields and resolver functions. If you already know about these, you can skip this page.
-
-> The content on this page provides generic information around GraphQL server development and is not specific to Prisma.
-
-## Every GraphQL API has a GraphQL schema
+## The GraphQL schema
 
 ### The types in the GraphQL schema define the API operations
 
@@ -98,7 +97,7 @@ query {
 
 Because the type of the `hello` root field is `String!` (which is a scalar type), it is not possible to include further fields in the selection set of the `hello` query.
 
-## Resolver functions implement the schema definition
+## Resolver functions
 
 ### Schema definition vs Resolver implementation
 
