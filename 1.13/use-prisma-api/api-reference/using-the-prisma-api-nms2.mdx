@@ -1,3 +1,5 @@
+import Warning from 'components/Markdown/Warning'
+
 export const meta = {
   title: "Using the Prisma API",
   position: 10,
@@ -130,7 +132,12 @@ The [`graphql-request`](https://github.com/prismagraphql/graphql-request) librar
 
 ### Using `request`
 
-> WARNING: `request` does not support passing _headers_ to the request ([yet](https://github.com/prismagraphql/graphql-request/pull/91)). Therefore, this particular example assumes your Prisma service was deployed without a service secret.
+<Warning>
+
+`request` does not support passing _headers_ to the request ([yet](https://github.com/prismagraphql/graphql-request/pull/91)). Therefore, this particular example assumes your Prisma service was deployed without a service secret.
+
+</Warning>
+
 
 ```js
 const { request } = require('graphql-request')

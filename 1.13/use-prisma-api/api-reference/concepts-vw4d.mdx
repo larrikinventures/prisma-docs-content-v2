@@ -1,3 +1,5 @@
+import Warning from 'components/Markdown/Warning'
+
 export const meta = {
   title: "Concepts",
   position: 30,
@@ -105,7 +107,11 @@ mutation {
 }
 ```
 
-> WARNING: Note that no [subscription](!alias-aey0vohche) events are triggered for batch mutations!
+<Warning>
+
+Note that no [subscription](!alias-aey0vohche) events are triggered for batch mutations!
+
+</Warning>
 
 ## Connections (Relay Pagination & Aggregations)
 
@@ -280,4 +286,8 @@ curl '__YOUR_PRISMA_ENDPOINT__' \\
 --data-binary '{"query":"mutation { createUser(data: { name: "Sarah" }) { id } }"'
 ```
 
-> WARNING: The service secret and service tokens are not to be confused with the Prisma Management API secret used to protect the Management API of your Prisma server.
+<Warning>
+
+The service secret and service tokens are not to be confused with the Prisma Management API secret used to protect the Management API of your Prisma server.
+
+</Warning>

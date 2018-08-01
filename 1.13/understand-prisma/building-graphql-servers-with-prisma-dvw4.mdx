@@ -68,7 +68,7 @@ binding.query.users({}, `{ id name }`)
 
 The first argument passed to `users` is an empty object (because the `users` root field in the schema definition above doesn't accept any parameters). The second argument is the selection set - to achieve the same result as the sample query above, we need to include `id` and the `name`.
 
-> Note: The selection set passed as the second argument actually is a _GraphQL fragment_ (in this case on the `User` type). Binding functions however accept a shorthand notation that omits the `fragment` keyword as well the fragment name. So instead of:
+> The selection set passed as the second argument actually is a _GraphQL fragment_ (in this case on the `User` type). Binding functions however accept a shorthand notation that omits the `fragment` keyword as well the fragment name. So instead of:
 >
 ```graphql
 fragment UserFragment on User {
@@ -175,7 +175,7 @@ Prisma bindings can be used in two _modes_:
 
 The second mode is referred to as _schema delegation_. Schema delegation only works when there is an `info` object available and therefore the _only context where schema delegation is possible is inside of resolver functions_.
 
-> Note: The `info` object is the _fourth_ argument passed into a resolver function. It carries the AST and other useful information about the query that's currently being resolved, e.g. what parameter values were provided. You can learn more about the `info` object in [this](https://www.prisma.io/blog/graphql-server-basics-demystifying-the-info-argument-in-graphql-resolvers-6f26249f613a/) in-depth article.
+> The `info` object is the _fourth_ argument passed into a resolver function. It carries the AST and other useful information about the query that's currently being resolved, e.g. what parameter values were provided. You can learn more about the `info` object in [this](https://www.prisma.io/blog/graphql-server-basics-demystifying-the-info-argument-in-graphql-resolvers-6f26249f613a/) in-depth article.
 
 The idea of schema delegation is that a GraphQL query that's received by GraphQL server **`A`** is not resolved by **`A`**'s execution engine. Instead, **`A`** _delegates_ the query to GraphQL server **`B`** whose GraphQL execution engine will finally take care of resolving the query.
 

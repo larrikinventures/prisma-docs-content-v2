@@ -1,9 +1,11 @@
+import Collapse from 'components/Markdown/Collapse'
+import Warning from 'components/Markdown/Warning'
+
 export const meta = {
   title: 'Prisma Basics: Server, Services & Data Model',
   position: 20,
   description: 'Learn about the main concepts you are dealing with when working Prisma. Most importantly: Prisma services, servers and the data model.'
 }
-
 
 ## Main concepts
 
@@ -45,10 +47,13 @@ Putting it all together, the endpoint for a service might look as follows: `http
 
 ![](https://imgur.com/jPLMaF5.png)
 
-> **Notes**
->
-> - If you've seen a service deployed to an endpoint that didn't have any path components (e.g. `http://localhost:4466`), it uses the `default` values for service name and stage. This means **`http://localhost:4466/default/default` can always be written as `http://localhost:4466`**.
-> - Another exception for the endpoint structure are *Demo servers* on Prisma cloud that have an additional path component *before* the service name and stage. This corresponds to the *name* of your workspace. For example, if your workspace is called `john-doe`, the endpoint might look as follows: `http://prisma-eu1.sh/john-doe/my-service/dev`
+Prisma services can also be deployed to endpoints without any path components (e.g. `http://localhost:4466`), in these cases Prisma uses `default` for service name _and_ stage. **This means `http://localhost:4466/default/default` can always be written as `http://localhost:4466`.**
+
+<Collapse title="Endpoint structure of Prisma Demo servers">
+
+Another exception for the endpoint structure are _Demo servers_ on Prisma cloud that have an additional path component _before_ the service name and stage. This corresponds to the _name_ of your workspace. For example, if your workspace is called `john-doe`, the endpoint might look as follows: `http://prisma-eu1.sh/john-doe/my-service/dev`
+
+</Collapse>
 
 ### Common workflows
 
@@ -85,11 +90,16 @@ secret: my-secret
 
 ### Data model
 
-You can think of the data model as a way to specify your *database schema* in a declarative way. (Prisma enforces a schema even for schemaless databases.)
-
-> ⚠️  Don't confuse the data model with a GraphQL schema.
+You can think of the data model as a way to specify your _database schema_ in a declarative way. (Prisma enforces a schema even for schemaless databases.)
 
 The data model is written in GraphQL SDL and contains the service's _model definitions_. The auto-generated Prisma API exposes CRUD and realtime operations for each model. 
+
+<Warning>
+
+Even though it's written in GraphQL SDL, the data model is _not_ a valid [GraphQL schema](https://www.prisma.io/blog/graphql-server-basics-the-schema-ac5e2950214e/). This is because it doesn't have any of the `Query`, `Mutation` or `Subscription` root types that are defining actual GraphQL operations. Learn more about the differences [here](knul#data-model-vs-prisma-graphql-schema).
+
+</Warning>
+
 
 Prisma maps each model definition to a _table_ (or an equivalent structure in the case of a non-relational database, e.g. a _document_) in the underlying database.
 
