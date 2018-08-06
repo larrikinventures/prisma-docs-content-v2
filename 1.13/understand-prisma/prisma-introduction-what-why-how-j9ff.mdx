@@ -86,7 +86,7 @@ When developing application servers, most complexity lies in implementing a safe
 
 One common solution to thius problem is the introduction of a dedicated _data access layer_ (DAL) that abstracts away the complexities of database access. The DAL's API is consumed by the application server, allowing API developers to simply think about _what_ data they need instead of worrying about _how_ to securely and performantly retrieve it from the database.
 
-![](https://imgur.com/DboMD5f.png)
+![](https://i.imgur.com/SUH6AqW.png)
 
 Using a DAL ensures a **clear separation of concerns** and therefore **improves maintainability and reusability** of your code. Having some sort of database abstraction (be it a simple ORM library or a standalone infrastructure component) is **best practice** for smaller sized applications as well as for applications running at scale. It ensures the application server can talk to your database(s) in a **secure and performant** way.
 
@@ -114,39 +114,47 @@ Prisma's auto-generated CRUD/realtime GraphQL API is the foundation for your _ap
 
 Another common approach is to use Prisma for developing "GraphQL microservices" with a GraphQL gateway layer on top, combining the underlying microservices (using [_GraphQL schema stitching_](https://www.prisma.io/blog/graphql-schema-stitching-explained-schema-delegation-4c6caf468405/)).
 
-### Example Architectures
+#### Example Architectures
 
 Prisma is extremely flexible and can be used with almost any architecture. Here are some sample architectures demonstrating how Prisma fits into your stack.
 
-#### Architecture #1 
+----
+
+### Architecture #1
 
 - 1 Application server
 - 1 Prisma service
 - 1 Database
 
+![](https://i.imgur.com/pfzYRo7.png)
+
 This architecture is very common to start out with. It's often used for small- and medium-sized applications where you don't need to split up your data across several databases or use multiple services.
 
 In this setup, the Prisma service provides the interface to the database (the _data access layer_). Its GraphQL API is consumed by the GraphQL application server which tailors the generic CRUD operations to the clients' needs.
 
-![](https://imgur.com/n4L13Rk.png)
+----
 
-#### Architecture #2
+### Architecture #2
 
 - 1 GraphQL "gateway" server
 - n Application servers (Microservices)
-- n Prisma services 
+- n Prisma services
 - n Database
 
-When an application grows, it often makes sense to create separate "microservices" with distinct responsibilities. For example in a webshop application, one service could be responsible for *user management*, another could be responsible for *payment and shipping*, another one for storing *products*. 
+![](https://i.imgur.com/e5gdkoY.png)
+
+When an application grows, it often makes sense to create separate "microservices" with distinct responsibilities. For example in a webshop application, one service could be responsible for *user management*, another could be responsible for *payment and shipping*, another one for storing *products*.
 
 Creating multiple microservices (each backed by one Prisma service) with clear responsibilities improves the modularity of your codebase. It also makes it easier to work in bigger organizations as each team can develop and maintain their own microservice(s).
 
-![](https://imgur.com/maWhcQG.png)
+----
 
-#### Architecture #3
+### Architecture #3
 
 - 1 Prisma service
 - 1 Database
+
+![](https://i.imgur.com/LPtASMz.png)
 
 In the rare cases where your app doesn't require any authentication, authorization or other business logic on the server-side, this architecture might be appropriate for you. Exposing Prisma directly to your clients means that these are now effectively talking directly to your database (through Prisma's GraphQL abstraction).
 
@@ -155,5 +163,3 @@ Here's a few use cases where this architecture works:
 - Prototyping
 - Internal tooling, exposing public data or other use cases where authentication and authorization are not important
 - Learning how GraphQL works on the frontend
-
-![](https://imgur.com/duLLp3s.png)

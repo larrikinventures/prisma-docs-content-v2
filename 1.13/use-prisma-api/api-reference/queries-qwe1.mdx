@@ -11,7 +11,7 @@ export const meta = {
 
 The GraphQL API of a Prisma service is specified in the Prisma GraphQL schema. The Prisma GraphQL schema is auto-generated based on the service's data model:
 
-![](https://imgur.com/ZIjHLpL.png)
+![](https://i.imgur.com/jHkNjKU.png)
 
 The `Query` type of the Prisma GraphQL schema defines all the queries the Prisma API accepts.
 
@@ -48,8 +48,8 @@ graphql get-schema --endpoint __YOUR_PRISMA_ENDPOINT__ --output prisma.graphql -
 
 Another way to learn about the concrete capabilities of your Prisma API is by exploring the auto-generated API documentation inside a GraphQL Playground. You can do so by clicking the green **SCHEMA**-button at the right edge of the Playground:
 
-![](https://imgur.com/09ivRMs.png)
-`
+![](https://i.imgur.com/XdVy80I.png)
+
 ### Data model for examples on this page
 
 All example queries on this page are based on a Prisma service configured with this data model:
@@ -494,11 +494,11 @@ You can also skip an arbitrary amount of nodes in whichever direction you are se
 
 For the following examples, we're assuming a list of exactly 30 nodes:
 
-![](https://imgur.com/X6kKKuK.png)
+![](https://i.imgur.com/Xh6Qjts.png)
 
 **Query the first 3 nodes (seeking _forward_):**
 
-![](https://imgur.com/dRjRLcp.png)
+![](https://i.imgur.com/O1Jj3Z2.png)
 
 ```graphql
 query {
@@ -511,7 +511,7 @@ query {
 
 **Query the nodes from position 6 to position 10 (seeking _forward_):**
 
-![](https://imgur.com/e2UnoWJ.png)
+![](https://i.imgur.com/PpI5X0X.png)
 
 ```graphql
 query {
@@ -525,28 +525,28 @@ query {
 }
 ```
 
-**Query the last 4 nodes (seeking _backward_)**:
+**Query the last 3 nodes (seeking _backward_)**:
 
-![](https://imgur.com/C32uDLG.png)
+![](https://i.imgur.com/pkuYCrV.png)
 
 ```graphql
 query {
-  posts(last: 4) {
+  posts(last: 3) {
     id
     title
   }
 }
 ```
 
-**Query the nodes from position 20 to position 26 (seeking _backward_):**
+**Query the nodes from position 21 to position 27 (seeking _backward_):**
 
-![](https://imgur.com/Ke04CCc.png)
+![](https://i.imgur.com/iSl9Y07.png)
 
 ```graphql
 query {
   posts(
-    last: 7 
-    skip: 4
+    last: 7
+    skip: 3
   ) {
     id
     title
@@ -554,14 +554,14 @@ query {
 }
 ```
 
-**Query the first 2 nodes after the node with `cixnen24p33lo0143bexvr52n` as `id`:**
+**Query the first 3 nodes after the node with `cixnen24p33lo0143bexvr52n` as `id`:**
 
-![](https://imgur.com/7NAPqkX.png)
+![](https://i.imgur.com/InYSSkQ.png)
 
 ```graphql
 query {
   posts(
-    first: 2
+    first: 3
     after: "cixnen24p33lo0143bexvr52n"
   ) {
     id
@@ -570,14 +570,14 @@ query {
 }
 ```
 
-**Query the first 4 nodes after the node with `cixnen24p33lo0143bexvr52n` as `id` and skipping 3 nodes:**
+**Query the first 5 nodes after the node with `cixnen24p33lo0143bexvr52n` as `id` and skipping 3 nodes:**
 
-![](https://imgur.com/8nfeLPv.png)
+![](https://i.imgur.com/u4WEAJv.png)
 
 ```graphql
 query {
   posts(
-    first: 4
+    first: 5
     after: "cixnen24p33lo0143bexvr52n"
     skip: 3
   ) {
@@ -587,14 +587,14 @@ query {
 }
 ```
 
-**Query the last 6 nodes before the node with `cixnen24p33lo0143bexvr52n` as `id`:**
+**Query the last 5 nodes before the node with `cixnen24p33lo0143bexvr52n` as `id`:**
 
-![](https://imgur.com/B1b94Mi.png)
+![](https://i.imgur.com/306eghw.png)
 
 ```graphql
 query {
   posts(
-    last: 6 
+    last: 5
     before: "cixnen24p33lo0143bexvr52n"
   ) {
     id
@@ -605,7 +605,7 @@ query {
 
 **Query the last 3 nodes before the node with `cixnen24p33lo0143bexvr52n` as `id` and skipping 5 nodes:**
 
-![](https://imgur.com/0Ggclr0.png)
+![](https://i.imgur.com/iZGUiHJ.png)
 
 ```graphql
 query {
