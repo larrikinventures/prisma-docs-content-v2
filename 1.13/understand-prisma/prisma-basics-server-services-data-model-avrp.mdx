@@ -20,7 +20,7 @@ When working with Prisma, you need to understand the following concepts:
 
 Here's a simple diagram showing the interplay of these concepts:
 
-![](https://imgur.com/Gcnxs7r.png)
+![](https://i.imgur.com/xMXxsku.png)
 
 ## Prisma services
 
@@ -45,7 +45,7 @@ Each Prisma service has exactly one _endpoint_. The endpoint is composed of the 
 
 Putting it all together, the endpoint for a service might look as follows: `https://example.com:4466/my-service/dev`
 
-![](https://imgur.com/jPLMaF5.png)
+![](https://i.imgur.com/Ge85JyL.png)
 
 Prisma services can also be deployed to endpoints without any path components (e.g. `http://localhost:4466`), in these cases Prisma uses `default` for service name _and_ stage. **This means `http://localhost:4466/default/default` can always be written as `http://localhost:4466`.**
 
@@ -105,7 +105,7 @@ Prisma maps each model definition to a _table_ (or an equivalent structure in th
 
 The data model is typically located in a file called `datamodel.graphql` (though it might be named differently or even split across multiple files).
 
-![](https://imgur.com/FE7tWF1.png)
+![](https://i.imgur.com/yvDByNB.png)
 
 ## Prisma servers
 
@@ -169,6 +169,6 @@ You can host a Prisma server anywhere - be it your on own infrastructure or usin
 
 To take advantage of these benefits, you need to connect your Prisma server to Prisma Cloud.
 
-![](https://imgur.com/rtugZ7y.png)
+![](https://i.imgur.com/gUzWSwS.png)
 
 With the cloud provider integrations, you're also able to _set up_ your Prisma server directly through the web UI instead of fiddling around with Docker and the APIs/UIs of your cloud provider. As an example, learn how to [setup a new Prisma server with a connected database on Heroku](https://www.youtube.com/watch?v=b2ofz3XxR14).

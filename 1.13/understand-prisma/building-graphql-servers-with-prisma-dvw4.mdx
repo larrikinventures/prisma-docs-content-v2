@@ -113,7 +113,7 @@ Another way of looking at GraphQL bindings is as _auto-generated SDKs for GraphQ
 
 GraphQL bindings effectively serve the same purpose. The binding functions are equivalent to the root fields of the corresponding GraphQL schema and allow to interact with the GraphQL API in a more convenient way.
 
-![](https://imgur.com/U2MHmdT.png)
+![](https://i.imgur.com/meI1A4S.png)
 
 ### Prisma bindings have additional Prisma-specific features
 
@@ -182,7 +182,7 @@ The second mode is referred to as _schema delegation_. Schema delegation only wo
 
 The idea of schema delegation is that a GraphQL query that's received by GraphQL server **`A`** is not resolved by **`A`**'s execution engine. Instead, **`A`** _delegates_ the query to GraphQL server **`B`** whose GraphQL execution engine will finally take care of resolving the query.
 
-![](https://imgur.com/FhhaIgh.png)
+![](https://i.imgur.com/csz6Ck8.png)
 
 In this example, the `feed` resolver in the application server _delegates_ the resolution of the incoming query to the `posts` resolver of the Prisma API. Note that this only works when the respective fields of both resolvers have the same _type_.
 
@@ -199,7 +199,7 @@ The most important part to understand is that when building GraphQL servers with
 - The **database layer** is provided by Prisma's CRUD/realtime GraphQL API. The GraphQL schema defining this API is the auto-generated **Prisma GraphQL schema**.
 - The **application layer** is responsible for any functionality that's _not directly_ related to writing or reading data from the database (like business logic, authentication and permissions, 3rd-party integrations,...). When working with Node.JS, the application layer is commonly implemented with the [`graphql-yoga`](https://github.com/graphcool/graphql-yoga) library. The GraphQL schema defining the API of the application layer is called **application schema**.
 
-![](https://imgur.com/0kUAOBp.png)
+![](https://i.imgur.com/CIXK9kg.png)
 
 The application layer is where you'll spend most of your actual _coding_ work. Here you need to _define the GraphQL schema_ for the API your client applications will talk to and _implement the corresponding resolver functions_ (these resolvers will be delegating requests to Prisma).
 

@@ -75,7 +75,7 @@ The first field in a query, mutation or subscription operation _always_ has to b
 
 The collection of all fields and their arguments inside a query/mutation/subscriptions is called the _selection set_ of the operation. The _type_ of the root field determines which fields can be further included in the operation's selection set. In the case of the above example, the types of the root fields are `User` and `[User!]!` which in both cases allows to include any fields of the `User` type.
 
-![](https://imgur.com/jX1LxPc.png)
+![](https://i.imgur.com/nogExCy.png)
 
 If the root field had a [scalar](http://graphql.org/learn/schema/#scalar-types) type, it wouldn't be possible to include any further fields in the selection set. As an example, consider the following GraphQL schema:
 
@@ -105,7 +105,7 @@ The combination of both, the schema definition and resolver implementations, is 
 
 Every field in the GraphQL schema is backed by one resolver function, meaning there are precisely as many resolver functions as fields in the GraphQL schema (this also includes fields on types other than root types).
 
-![](https://imgur.com/bMsjqIu.png)
+![](https://i.imgur.com/fwAob9g.png)
 
 The resolver function for a field is responsible for fetching the data for precisely that field. For example, the resolver for the `users` root field above needs to fetch (and return) a list of `User` objects.
 
