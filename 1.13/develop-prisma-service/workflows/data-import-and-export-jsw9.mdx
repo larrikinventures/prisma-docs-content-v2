@@ -37,6 +37,10 @@ You can upload an unlimited number of files for each of these types, but it's re
 
 ### Important considerations
 
+#### General constraints
+
+When importing data, the `id` field of a node can be at most 25 characters long.
+
 #### Idempotency
 
 Note that import operations are **not idempotent**. This means running an import **always adds** data to your service. It **never updates** existing nodes. This means importing the same dataset multiple times will lead to undefined behaviour. 
