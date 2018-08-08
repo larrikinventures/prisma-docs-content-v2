@@ -74,6 +74,13 @@ Prisma lets you *subscribe* to three different kinds of events (per type in your
 - an existing `Post` nodes is *updated*
 - an existing `Post` nodes is *deleted*
 
+<Warning>
+
+Subscriptions are nor firing for [batch mutations](qwe2#batch-mutations).
+
+</Warning>
+
+
 The corresponding definition of the `Subscription` type looks as follows (this definition can be found in the Prisma GraphQL schema):
 
 ```graphql
