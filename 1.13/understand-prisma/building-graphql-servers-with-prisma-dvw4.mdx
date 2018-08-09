@@ -124,6 +124,8 @@ There are two extra features in Prisma bindings (compared to regular GraphQL bin
 - baked in authentication using the _service secret_
 - the `exists` function lets you to check whether a certain element exists in the database
 
+> Prisma bindings use the [data loader](https://github.com/facebook/dataloader) pattern to batch requests to the Prisma API.
+
 ### Baked in authentication
 
 The _service secret_ is passed to the constructor of the `Prisma` binding. This allows the binding to generate the required _service token_ (JWT) when it sends requests to your service's API.
