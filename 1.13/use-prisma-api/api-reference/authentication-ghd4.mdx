@@ -1,3 +1,6 @@
+import Collapse from 'components/Markdown/Collapse'
+import Warning from 'components/Markdown/Warning'
+
 export const meta = {
   title: "Authentication",
   position: 20,
@@ -31,7 +34,11 @@ curl '__YOUR_PRISMA_ENDPOINT__' \\
 --data-binary '{"query":"mutation { createUser(data: { name: "Sarah" }) { id } }"'
 ```
 
-> WARNING: The service secret and service tokens are not to be confused with the Prisma Management API secret used to protect the Management API of your Prisma server.
+<Warning>
+
+The service secret and service tokens are not to be confused with the Prisma Management API secret used to protect the [Management API](foe1) of your [Prisma server](/1.14/operate-prisma-server/).
+
+</Warning>
 
 ## Service secret
 
@@ -115,26 +122,33 @@ Here is the sample Payload of a JWT:
 
 The service token is a _bearer_ token:
 
-> **Bearer Token**: A security token with the property that any party in possession of the token (a "bearer") can use the token in any way that any other party in possession of it can. Using a bearer token does not require a bearer to prove possession of cryptographic key material (proof-of-possession).
+_**Bearer Token**: A security token with the property that any party in possession of the token (a "bearer") can use the token in any way that any other party in possession of it can. Using a bearer token does not require a bearer to prove possession of cryptographic key material (proof-of-possession)._
 
-It needs to be sent to the Prisma API as specified by the [OAuth 2.0 Authorization Framework specification](http://self-issued.info/docs/draft-ietf-oauth-v2-bearer.html#authz-header):
+It needs to be sent to the Prisma API as specified by the [OAuth 2.0 Authorization Framework specification](http://self-issued.info/docs/draft-ietf-oauth-v2-bearer.html#authz-header).
 
-> When sending the access token in the Authorization request header field defined by HTTP/1.1 [RFC2617], the client uses the Bearer authentication scheme to transmit the access token.
->
-> For example:
-> ```
-> GET /resource HTTP/1.1
-> Host: server.example.com
-> Authorization: Bearer mF_9.B5f-4.1JqM
-> ```
->
-> The syntax of the `Authorization` header field for this scheme follows the usage of the Basic scheme defined in Section 2 of [RFC2617]. Note that, as with Basic, it does not conform to the generic syntax defined in Section 1.2 of [RFC2617] but is compatible with the general authentication framework being developed for HTTP 1.1 [HTTP‑AUTH], although it does not follow the preferred practice outlined therein in order to reflect existing deployments. The syntax for Bearer credentials is as follows:
-> ```
-> b64token    = 1*( ALPHA / DIGIT /
->                    "-" / "." / "_" / "~" / "+" / "/" ) *"="
-> credentials = "Bearer" 1*SP b64token
-> Clients SHOULD make authenticated requests with a bearer token using the `Authorization` request header field with the `Bearer` HTTP authorization scheme. Resource servers MUST support this method.
-> ```
+<Collapse title="More info about the OAuth 2.0 Authorization Framework specification">
+
+_When sending the access token in the Authorization request header field defined by HTTP/1.1 [RFC2617], the client uses the Bearer authentication scheme to transmit the access token._
+
+_For example:_
+
+```
+GET /resource HTTP/1.1
+Host: server.example.com
+Authorization: Bearer mF_9.B5f-4.1JqM
+```
+
+_The syntax of the `Authorization` header field for this scheme follows the usage of the Basic scheme defined in Section 2 of [RFC2617]. Note that, as with Basic, it does not conform to the generic syntax defined in Section 1.2 of [RFC2617] but is compatible with the general authentication framework being developed for HTTP 1.1 [HTTP‑AUTH], although it does not follow the preferred practice outlined therein in order to reflect existing deployments. The syntax for Bearer credentials is as follows:_
+
+```
+b64token    = 1*( ALPHA / DIGIT /
+                   "-" / "." / "_" / "~" / "+" / "/" ) *"="
+credentials = "Bearer" 1*SP b64token
+Clients SHOULD make authenticated requests with a bearer token using the `Authorization` request header field with the `Bearer` HTTP authorization scheme. Resource servers MUST support this method.
+```
+
+</Collapse>
+
 
 ## Example: Protecting your Prisma API
 

@@ -66,7 +66,7 @@ Another exception for the endpoint structure are _Demo servers_ on Prisma cloud 
 - Configure post-deployment _hooks_ to execute bash commands after a service was deployed (e.g. to download the auto-generated GraphQL schema that defines the Prisma API).
 - Initially seed service data or import/export data as the service is running.
 
-See here for more info about [Prisma services](tbd).
+See here for more info about [Prisma services](/1.13/develop-prisma-services).
 
 ## Service configuration
 
@@ -82,7 +82,7 @@ datamodel: datamodel.graphql
 secret: my-secret
 ```
 
- These are the configuration properties it contains:
+These are the configuration properties it contains:
 
 - `endpoint`: The HTTP endpoint of the Prisma server (plus *service name* and *stage*) to which the service is deployed. This endpoint exposes the service's Prisma API.
 - `datamodel`: The _file path_ to the data model which serves as foundation for the GraphQL CRUD/realtime API.
