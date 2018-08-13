@@ -6,14 +6,14 @@ export const meta = {
   step: 1,
   gettingStartedTitle: 'Use existing DB (requires Docker)',
   position: 3,
-  nextText: `Now that you have a new Prisma running, let's make some more stuff!`
+  nextText: 'Great work! 👏  Move on to learn how you can extend your data model and make changes to your Prisma API.'
 }
 
 ## Goals
 
 On this page, you will learn how to:
 
-- Install Prisma
+- Install the Prisma CLI
 - Start a local Prisma server using Docker
 - Introspect your existing database and generate a service configuration
 - Deploy a Prisma service to the local Prisma server
@@ -117,7 +117,7 @@ prisma introspect
 
 In the interactive wizard, provide the same database connection details you specified in the Docker Compose file.
 
-The CLI will generat the `datamodel-[TIMESTAMP].graphql` (e.g. `datamodel-1533886167692.graphql`) file containing the SDL version of your database schema.
+The CLI will generate the `datamodel-[TIMESTAMP].graphql` (e.g. `datamodel-1533886167692.graphql`) file containing the SDL version of your database schema.
 
 ## Deploy the Prisma service
 
@@ -169,6 +169,7 @@ type User @pgTable(name: "User") {
 }
 ```
 
+Depending on what your data model looks like, you can derive equivalent queries and mutations for your case. You can also use the auto-generated API documentation in the Playground to learn about the available API operations.
 
 <QueryChooser titles={["Create new user", "Query all users", "Update a user's name", "Delete user"]}>
 

@@ -22,16 +22,15 @@ Prisma lets you:
 
 **Prisma's main use case is to provide the _data access layer_ (_think ORM_) for API servers.** Because of its GraphQL engine, Prisma is _most often_ used to build GraphQL APIs but also works with REST or any other API paradigm. 
 
-Other use cases for Prisma are scripts, functions, queue workers or any other  context where developers need to talk to a database. 
+Other use cases for Prisma are scripts, functions, queue workers or _any other  context where developers need to talk to a database_.
 
-When building a GraphQL server that uses Prisma as its data access layer, it is important to understand that the auto-generated Prisma GraphQL API is _not_ consumed by your client applications - instead you build the actual _application server_ on top of Prisma.
+When building a GraphQL server that uses Prisma as its data access layer, it is important to understand that the auto-generated Prisma GraphQL API is _not_ consumed by your client applications - instead you build the actual _API server_ on top of Prisma.
 
 ### What Prisma is not
 
 To prevent misconceptions about Prisma, here's a list of **what Prisma is not**:
 
 - ... **a database** - When using Prisma, you use it as a layer *on top* *of* your database.
-- ... **an ORM** - Although it solves similar problems as ORMs (more [here](https://github.com/prismagraphql/prisma#is-prisma-an-orm)).
 - ... **a BaaS/PaaS** - Prisma doesn't replace your entire backend and isn't a hosted service/hosting provider.
 - ... an [AI painting app](https://prisma-ai.com/) 😑
 
@@ -40,6 +39,8 @@ To prevent misconceptions about Prisma, here's a list of **what Prisma is not**:
 _Prisma_ is open-source and can be used as a standalone infrastructure component hosted on your favorite cloud provider. [_Prisma Cloud_](https://www.prisma.io/cloud) is an application (used through a CLI & web interface) that provides tools and services around Prisma. When you're using Prisma, usage of Prisma Cloud is optional.
 
 The goal of Prisma Cloud is to ease the workflows in Prisma projects. It features a **data browser**, a **deployment history** (soon with **automatic rollbacks**), various **team collaboration** options as well as **cloud provider integrations** to make it easy for developers to setup and maintain their Prisma servers.
+
+**Get started with Prisma Cloud [here](https://app.prisma.io/).**
 
 </Collapse>
 
@@ -50,14 +51,14 @@ The goal of Prisma Cloud is to ease the workflows in Prisma projects. It feature
 
 Prisma's overall goal is to remove complexity from common database workflows and make it easy for developers to work with databases:
 
-- **Auto-generated CRUD GraphQL API** for easy database access.
+- **Auto-generated CRUD GraphQL API** for easy database access. ([Learn more](./1.13/use-prisma-api).)
   - **Type safe database access** thanks to a strongly typed GraphQL schema.
   - GraphQL is a lot more **practical and developer-friendly** than SQL or NoSQL APIs.
   - Adheres to the [**OpenCRUD**](https://www.opencrud.org/) standard.
 - Prisma unifies access to multiple databases at once (_coming soon_) and therefore drastically **reduces complexity in cross-database workflows** using GraphQL as a universal query language.
 - **Realtime streaming & event system for your database** ensuring you're getting updates for all important events happening in your database.
 - **Automatic database migrations** based on a declarative data model expressed using GraphQL's schema definition language (SDL).
-- Other database workflows such as **data import, export & more**
+- Other database workflows such as **[data import, export](jsw9) & more**.
 
 ### A realtime layer for your database
 
